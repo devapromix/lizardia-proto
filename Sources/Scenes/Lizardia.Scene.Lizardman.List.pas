@@ -22,23 +22,21 @@ implementation
 uses
   BearLibTerminal,
   SysUtils,
-  Lizardia.Game;
+  Lizardia.Game,
+  Lizardia.Lizardman.List;
 
 { TSceneLizardmanList }
 
 procedure TSceneLizardmanList.Render;
-// var
-// LVehicle: Integer;
+var
+  LLizardman: Integer;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(15, 5, 60, 19);
   DrawTitle(7, 'LIST OF LIZARDMANS');
-  { inherited Render;
-    DrawTitle(Game.Company.Name + ' AIRCRAFTS');
-    for LVehicle := 0 to Game.Vehicles.AircraftCount - 1 do
-    DrawButton(12, LVehicle + 11, Chr(Ord('A') + LVehicle),
-    Game.Vehicles.Aircraft[LVehicle].Name); }
+  for LLizardman := 0 to Game.Map.LizardmanList.Count - 1 do
+    DrawText(17, LLizardman + 9, '++++');
 end;
 
 procedure TSceneLizardmanList.Update(var AKey: Word);

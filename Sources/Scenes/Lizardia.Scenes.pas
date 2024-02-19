@@ -289,7 +289,6 @@ end;
 procedure TScene.DrawMap(const AWidth, AHeight: Integer);
 begin
   Game.Map.Draw(AWidth, AHeight);
-  Game.Map.LizardmanList.Draw;
 end;
 
 procedure TScene.DrawMoney(const X, Y, Money: Integer;
