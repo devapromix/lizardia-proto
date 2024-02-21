@@ -191,15 +191,6 @@ begin
     end;
   end;
   //
-  J := 1;
-  for X := 0 to FWidth - 1 do
-  begin
-    Inc(J, Math.RandomRange(0, 3) - 1);
-    for Y := FHeight - 1 downto L + J do
-      if (Cell[X][Y] <> tlWater) then
-        Cell[X][Y] := tlRock;
-  end;
-  //
   repeat
     X := Math.RandomRange(FWidth div 4, (FWidth div 4) * 3);
     Y := Math.RandomRange(FHeight div 4, L + J);

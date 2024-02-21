@@ -29,14 +29,14 @@ uses
 
 procedure TSceneLizardmanList.Render;
 var
-  LLizardman: Integer;
+  I: Integer;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(15, 5, 60, 19);
   DrawTitle(7, 'LIST OF LIZARDMANS');
-  for LLizardman := 0 to Game.Map.LizardmanList.Count - 1 do
-    DrawText(17, LLizardman + 9, '++++');
+  for I := 0 to Game.Map.LizardmanList.List.Count - 1 do
+    DrawText(17, I + 9, '++++');
 end;
 
 procedure TSceneLizardmanList.Update(var AKey: Word);

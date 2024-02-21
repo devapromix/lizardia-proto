@@ -5,20 +5,19 @@ interface
 uses
   Lizardia.Entity,
   Lizardia.Lizardman,
+  System.Generics.Collections,
   Lizardia.Lizardman.Factory;
 
 type
   TLizardmanList = class(TObject)
   private
     FLizardmanFactory: TLizardmanFactory;
-    FLizardmanList: TArray<TLizardman>;
   public
+    List: TObjectList<TLizardman>;
     constructor Create;
     destructor Destroy; override;
     procedure Clear;
     procedure Add(const AX, AY: Integer);
-    function Lizardman(const I: Integer): TLizardman;
-    function Count: Integer;
   end;
 
 implementation
@@ -33,41 +32,35 @@ uses
 
 procedure TLizardmanList.Add(const AX, AY: Integer);
 begin
-  SetLength(FLizardmanList, Length(FLizardmanList) + 1);
-  FLizardmanList[High(FLizardmanList)] :=
+  { SetLength(FLizardmanList, Length(FLizardmanList) + 1);
+    FLizardmanList[High(FLizardmanList)] :=
     FLizardmanFactory.GenerateRandomLizardman;
-  FLizardmanList[High(FLizardmanList)].SetLocation(AX, AY);
+    FLizardmanList[High(FLizardmanList)].SetLocation(AX, AY); }
+  List.Add(FLizardmanFactory.GenerateRandomLizardman);
 end;
 
 procedure TLizardmanList.Clear;
-var
-  I: Integer;
+// var
+// I: Integer;
 begin
-  for I := 0 to Length(FLizardmanList) - 1 do
+  { for I := 0 to Length(FLizardmanList) - 1 do
     FLizardmanList[I].Free;
-  SetLength(FLizardmanList, 0);
-end;
-
-function TLizardmanList.Count: Integer;
-begin
-  Result := Length(FLizardmanList);
+    SetLength(FLizardmanList, 0); }
+  List.Clear;
 end;
 
 constructor TLizardmanList.Create;
 begin
   FLizardmanFactory := TLizardmanFactory.Create;
+  List := TObjectList<TLizardman>.Create();
 end;
 
 destructor TLizardmanList.Destroy;
 begin
-  Clear;
+  // Clear;
+  List.Free;
   FLizardmanFactory.Free;
   inherited;
-end;
-
-function TLizardmanList.Lizardman(const I: Integer): TLizardman;
-begin
-  Result := FLizardmanList[I];
 end;
 
 end.
