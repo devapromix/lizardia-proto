@@ -193,7 +193,7 @@ begin
   //
   repeat
     X := Math.RandomRange(FWidth div 4, (FWidth div 4) * 3);
-    Y := Math.RandomRange(FHeight div 4, L + J);
+    Y := Math.RandomRange(FHeight div 4, (FHeight div 4) * 3);
   until (Cell[X][Y] = tlGrass);
   FSpawn.X := X;
   FSpawn.Y := Y;
