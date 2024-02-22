@@ -78,6 +78,7 @@
         <DCCReference Include="Third-Party\Bass\Bass.pas"/>
         <DCCReference Include="Third-Party\BearLibTerminal\BearLibTerminal.pas"/>
         <DCCReference Include="Game\Lizardia.Entity.pas"/>
+        <DCCReference Include="Game\Lizardia.Palette.pas"/>
         <DCCReference Include="Game\Lizardia.Lizardman.pas"/>
         <DCCReference Include="Game\Lizardia.Lizardman.Factory.pas"/>
         <DCCReference Include="Game\Lizardia.Lizardman.List.pas"/>

@@ -8,10 +8,11 @@ uses
 type
   TLizardman = class(TEntity)
   private
-
+    FName: string;
   public
     constructor Create;
     destructor Destroy; override;
+    property Name: string read FName write FName;
   end;
 
 implementation

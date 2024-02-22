@@ -6,6 +6,7 @@ uses
   Bass in 'Third-Party\Bass\Bass.pas',
   BearLibTerminal in 'Third-Party\BearLibTerminal\BearLibTerminal.pas',
   Lizardia.Entity in 'Game\Lizardia.Entity.pas',
+  Lizardia.Palette in 'Game\Lizardia.Palette.pas',
   Lizardia.Lizardman in 'Game\Lizardia.Lizardman.pas',
   Lizardia.Lizardman.Factory in 'Game\Lizardia.Lizardman.Factory.pas',
   Lizardia.Lizardman.List in 'Game\Lizardia.Lizardman.List.pas',

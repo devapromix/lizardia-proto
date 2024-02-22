@@ -26,26 +26,24 @@ implementation
 
 uses
   Math,
+  SysUtils,
   BearLibTerminal,
   Lizardia.Game,
   Lizardia.Scenes;
 
 procedure TLizardmanList.Add(const AX, AY: Integer);
+var
+  LLizardman: TLizardman;
+  LNum: Byte;
 begin
-  { SetLength(FLizardmanList, Length(FLizardmanList) + 1);
-    FLizardmanList[High(FLizardmanList)] :=
-    FLizardmanFactory.GenerateRandomLizardman;
-    FLizardmanList[High(FLizardmanList)].SetLocation(AX, AY); }
-  List.Add(FLizardmanFactory.GenerateRandomLizardman);
+  LNum := List.Count + 1;
+  LLizardman := FLizardmanFactory.GenerateRandomLizardman;
+  LLizardman.Name := 'Lizardman #' + IntToStr(LNum);
+  List.Add(LLizardman);
 end;
 
 procedure TLizardmanList.Clear;
-// var
-// I: Integer;
 begin
-  { for I := 0 to Length(FLizardmanList) - 1 do
-    FLizardmanList[I].Free;
-    SetLength(FLizardmanList, 0); }
   List.Clear;
 end;
 
@@ -57,7 +55,6 @@ end;
 
 destructor TLizardmanList.Destroy;
 begin
-  // Clear;
   List.Free;
   FLizardmanFactory.Free;
   inherited;

@@ -197,14 +197,8 @@ begin
   until (Cell[X][Y] = tlGrass);
   FSpawn.X := X;
   FSpawn.Y := Y;
-  for I := 0 to 2 do
-  begin
-    repeat
-      X := Math.RandomRange(FSpawn.X - 3, FSpawn.X + 3);
-      Y := Math.RandomRange(FSpawn.Y - 3, FSpawn.Y + 3);
-    until (Cell[X][Y] = tlGrass);
+  for I := 0 to 20 do
     FLizardmanList.Add(X, Y);
-  end;
 end;
 
 function TMap.GetTile(const AX, AY: Integer): TTiles;
