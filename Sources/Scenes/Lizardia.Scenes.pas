@@ -190,33 +190,30 @@ begin
 end;
 
 procedure TScene.DrawBar;
-var
-  Y: Integer;
 begin
-  { Y := Self.Height - 1;
-    terminal_color('white');
-    terminal_bkcolor('darkest gray');
-    terminal_clear_area(0, Y, 80, 1);
-    DrawMoney(0, Y, Game.Money, TK_ALIGN_LEFT, True);
+  terminal_color('white');
+  terminal_bkcolor('darkest gray');
+  terminal_clear_area(0, 0, 90, 1);
+  { DrawMoney(0, Y, Game.Money, TK_ALIGN_LEFT, True);
     DrawText(12, Y, Format('Turn:%d', [Game.Turn]));
     DrawText(56, Y, Game.Calendar.GetDate); }
   if (Scenes.FSceneEnum <> scWorld) then
-    DrawButton(70, Y, False, 'ESC', 'MENU')
+    DrawButton(80, 0, False, 'ESC', 'MENU')
   else
-    DrawButton(70, Y, 'ESC', 'MENU');
+    DrawButton(80, 0, 'ESC', 'MENU');
   if (Scenes.FSceneEnum <> scWorld) and (Scenes.FSceneEnum <> scGameMenu) then
   begin
     if Game.IsPause then
-      DrawButton(25, Y, False, 'P', 'Paused')
+      DrawButton(25, 0, False, 'P', 'Paused')
     else
-      DrawButton(25, Y, False, 'P', 'Pause');
+      DrawButton(25, 0, False, 'P', 'Pause');
   end
   else
   begin
     if Game.IsPause then
-      DrawText(25, ScreenHeight - 1, '[c=yellow][[P]][/c] [c=red]PAUSED[/c]')
+      DrawText(25, 0, '[c=yellow][[P]][/c] [c=red]PAUSED[/c]')
     else
-      DrawButton(25, Y, 'P', 'Pause');
+      DrawButton(25, 0, 'P', 'Pause');
   end;
 end;
 

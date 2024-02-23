@@ -28,15 +28,19 @@ procedure TSceneGameMenu.Render;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
-  DrawFrame(15, 7, 60, 15);
+  DrawFrame(15, 7, 60, 17);
   DrawTitle(9, 'LIZARDIA');
 
   DrawButton(17, 11, 'L', 'LIST OF LIZARDMANS');
 
-  AddButton(19, 'Q', 'Quit');
-  AddButton(19, 'ESC', 'Close');
+  if Game.IsPause then
+    DrawButton(47, 16, 'P', 'Paused game')
+  else
+    DrawButton(47, 16, 'P', 'Pause game');
+  AddButton(21, 'Q', 'Quit');
+  AddButton(21, 'ESC', 'Close');
 
-  //DrawGameBar;
+  DrawBar;
 end;
 
 procedure TSceneGameMenu.Update(var AKey: word);
@@ -76,7 +80,8 @@ begin
           17:
             AKey := TK_X;
         end;
-    end;    if (GetButtonsY = MY) then
+    end;
+    if (GetButtonsY = MY) then
     begin
       case MX of
         34 .. 41:

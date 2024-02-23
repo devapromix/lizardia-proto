@@ -31,6 +31,11 @@ uses
 class procedure TSceneWorld.GlobalKeys(var Key: Word);
 begin
   case Key of
+    TK_P:
+      begin
+        Game.IsPause := not Game.IsPause;
+        Scenes.Render;
+      end;
     TK_L:
       Scenes.SetScene(scLizardmanList);
   end;
@@ -40,7 +45,7 @@ procedure TSceneWorld.Render;
 begin
   DrawMap(ScreenWidth, ScreenHeight);
 
-  // DrawBar;
+  DrawBar;
 
   if (MY >= ScreenHeight - 1) then
     ScrollDown;
@@ -58,28 +63,36 @@ var
 begin
   if (Key = TK_MOUSE_LEFT) then
   begin
-
+    if (MY = 0) then
+    begin
+      case MX of
+        80 .. 89:
+          Key := TK_ESCAPE;
+        25 .. 34:
+          Key := TK_P;
+      end;
+    end
   end;
   if (Key = TK_MOUSE_RIGHT) then
   begin
 
   end;
   case Key of
-      TK_ESCAPE:
-        begin
-          {if Game.Construct.IsConstruct then
+    TK_ESCAPE:
+      begin
+        { if Game.Construct.IsConstruct then
           begin
-            Game.Construct.Clear;
-            Scenes.Render;
-            Exit;
+          Game.Construct.Clear;
+          Scenes.Render;
+          Exit;
           end
           else if Game.IsOrder then
           begin
-            Game.IsOrder := False;
-            Exit;
+          Game.IsOrder := False;
+          Exit;
           end; }
-          Scenes.SetScene(scGameMenu);
-        end;
+        Scenes.SetScene(scGameMenu);
+      end;
     TK_LEFT:
       ScrollLeft;
     TK_RIGHT:
@@ -93,10 +106,11 @@ begin
         Game.Map.Gen;
         ScrollTo(Game.Map.Spawn.X, Game.Map.Spawn.Y);
       end;
-    TK_F:begin
+    TK_F:
+      begin
         Game.Fullscreen := not Game.Fullscreen;
         Game.Refresh;
-end;
+      end;
   end;
   GlobalKeys(Key);
 end;

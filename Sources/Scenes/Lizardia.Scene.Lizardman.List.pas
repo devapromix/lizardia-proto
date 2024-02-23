@@ -68,6 +68,8 @@ begin
   DrawLizardmanInfo();
 
   AddButton(27, 'Esc', 'Close');
+
+  DrawBar;
 end;
 
 procedure TSceneLizardmanList.Update(var AKey: Word);
