@@ -6,7 +6,7 @@ uses
   BearLibTerminal;
 
 type
-  TSceneEnum = (scWorld, scMainMenu, scGameMenu, scLizardmanList);
+  TSceneEnum = (scWorld, scMainMenu, scGameMenu, scLizardmanList, scStorehouse);
 
 type
   TButtonRec = record
@@ -100,7 +100,8 @@ uses
   Lizardia.Scene.World,
   Lizardia.Scene.Menu.Main,
   Lizardia.Scene.Menu.Game,
-  Lizardia.Scene.Lizardman.List;
+  Lizardia.Scene.Lizardman.List,
+  Lizardia.Scene.Storehouse;
 
 procedure TScene.DrawText(const X, Y: Integer; Text: string;
   const Align: Integer = TK_ALIGN_LEFT);
@@ -389,6 +390,7 @@ begin
   FScene[scWorld] := TSceneWorld.Create;
   FScene[scMainMenu] := TSceneMainMenu.Create;
   FScene[scGameMenu] := TSceneGameMenu.Create;
+  FScene[scStorehouse] := TSceneStorehouse.Create;
   FScene[scLizardmanList] := TSceneLizardmanList.Create;
 end;
 

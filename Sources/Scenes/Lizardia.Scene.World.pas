@@ -38,6 +38,8 @@ begin
       end;
     TK_L:
       Scenes.SetScene(scLizardmanList);
+    TK_S:
+      Scenes.SetScene(scStorehouse);
   end;
 end;
 
@@ -68,6 +70,8 @@ begin
       case MX of
         0 .. 13:
           Key := TK_L;
+        15 .. 28:
+          Key := TK_S;
         80 .. 89:
           Key := TK_ESCAPE;
         45 .. 55:

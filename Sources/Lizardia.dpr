@@ -17,7 +17,8 @@ uses
   Lizardia.Scene.Menu.Main in 'Scenes\Lizardia.Scene.Menu.Main.pas',
   Lizardia.Scene.Menu.Game in 'Scenes\Lizardia.Scene.Menu.Game.pas',
   Lizardia.Scene.Lizardman.List in 'Scenes\Lizardia.Scene.Lizardman.List.pas',
-  Lizardia.Resources in 'Game\Lizardia.Resources.pas';
+  Lizardia.Resources in 'Game\Lizardia.Resources.pas',
+  Lizardia.Scene.Storehouse in 'Scenes\Lizardia.Scene.Storehouse.pas';
 
 var
   Key: Word = 0;
