@@ -3,7 +3,8 @@
 interface
 
 uses
-  Lizardia.Map;
+  Lizardia.Map,
+  Lizardia.Resources;
 
 type
   TGame = class(TObject)
@@ -14,10 +15,12 @@ type
     FIsPause: Boolean;
     FIsGame: Boolean;
     FFullscreen: Boolean;
+    FResource: TResource;
   public
     constructor Create;
     destructor Destroy; override;
     property IsDebug: Boolean read FIsDebug;
+    property Resource: TResource read FResource write FResource;
     property Turn: Integer read FTurn;
     property Fullscreen: Boolean read FFullscreen write FFullscreen;
     property IsPause: Boolean read FIsPause write FIsPause;
@@ -51,6 +54,7 @@ begin
     if (LowerCase(ParamStr(I)) = '-debug') then
       FIsDebug := True;
   end;
+  FResource := TResource.Create;
   FMap := TMap.Create;
   FMap.Gen;
 end;
@@ -74,6 +78,7 @@ end;
 destructor TGame.Destroy;
 begin
   FMap.Free;
+  FResource.Free;
   inherited;
 end;
 

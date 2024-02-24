@@ -23,13 +23,15 @@ uses
   SysUtils,
   BearLibTerminal,
   Lizardia.Game,
-  Lizardia.Palette;
+  Lizardia.Palette,
+  Lizardia.Resources;
 
 { TSceneResourceList }
 
 procedure TSceneStorehouse.Render;
 var
-  LResourceIndex, LLeft, LTop: Integer;
+  LResourceEnum: TResourceEnum;
+  LLeft, LTop: Integer;
   LNum: string;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
@@ -39,10 +41,11 @@ begin
 
   LTop := 0;
   LLeft := 0;
-  for LResourceIndex := 0 to 83 do
+  for LResourceEnum := Low(LResourceEnum) to High(LResourceEnum) do
   begin
-    DrawText(LLeft * 17 + 12, LTop + 5, '+++');
-    LNum := '0';
+    DrawText(LLeft * 17 + 12, LTop + 5,
+      Game.Resource.GetResource(LResourceEnum).Name);
+    LNum := Game.Resource.GetResource(LResourceEnum).Value.ToString;
     DrawText(LLeft * 17 + 12 + (15 - Length(LNum)), LTop + 5, LNum);
     Inc(LTop);
     if (LTop > 20) then
