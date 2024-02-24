@@ -3,8 +3,8 @@
 interface
 
 type
-  TResourceEnum = (rsStone, rsCoal, rsIronOre, rsSilverOre, rsWood, rsPlanks,
-    rsWool, rsRope, rsLeather);
+  TResourceEnum = (rsStone, rsCoal, rsIronOre, rsIron, rsSilverOre, rsSilver,
+    rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather);
 
 type
   TResourceRec = record
@@ -34,7 +34,11 @@ begin
   FResource[rsStone].Name := 'Stone';
   FResource[rsCoal].Name := 'Coal';
   FResource[rsIronOre].Name := 'Iron Ore';
+  FResource[rsIron].Name := 'Iron';
   FResource[rsSilverOre].Name := 'Silver Ore';
+  FResource[rsSilver].Name := 'Silver';
+  FResource[rsGoldOre].Name := 'Gold ore';
+  FResource[rsGold].Name := 'Gold';
   FResource[rsWood].Name := 'Wood';
   FResource[rsPlanks].Name := 'Planks';
   FResource[rsWool].Name := 'Wool';
