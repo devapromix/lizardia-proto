@@ -194,26 +194,34 @@ begin
   terminal_color('white');
   terminal_bkcolor('darkest gray');
   terminal_clear_area(0, 0, 90, 1);
-  { DrawMoney(0, Y, Game.Money, TK_ALIGN_LEFT, True);
-    DrawText(12, Y, Format('Turn:%d', [Game.Turn]));
-    DrawText(56, Y, Game.Calendar.GetDate); }
+
+  DrawText(15, 0, Format('Turn:%d', [Game.Turn]));
+
   if (Scenes.FSceneEnum <> scWorld) then
-    DrawButton(80, 0, False, 'ESC', 'MENU')
+  begin
+    DrawButton(0, 0, False, 'L', 'LIZARDMANS');
+    DrawButton(15, 0, False, 'S', 'STOREHOUSE');
+    DrawButton(80, 0, False, 'ESC', 'MENU');
+  end
   else
+  begin
+    DrawButton(0, 0, 'L', 'LIZARDMANS');
+    DrawButton(15, 0, 'S', 'STOREHOUSE');
     DrawButton(80, 0, 'ESC', 'MENU');
+  end;
   if (Scenes.FSceneEnum <> scWorld) and (Scenes.FSceneEnum <> scGameMenu) then
   begin
     if Game.IsPause then
-      DrawButton(25, 0, False, 'P', 'Paused')
+      DrawButton(45, 0, False, 'P', 'Paused')
     else
-      DrawButton(25, 0, False, 'P', 'Pause');
+      DrawButton(45, 0, False, 'P', 'Pause');
   end
   else
   begin
     if Game.IsPause then
-      DrawText(25, 0, '[c=yellow][[P]][/c] [c=red]PAUSED[/c]')
+      DrawText(45, 0, '[c=yellow][[P]][/c] [c=red]PAUSED[/c]')
     else
-      DrawButton(25, 0, 'P', 'Pause');
+      DrawButton(45, 0, 'P', 'Pause');
   end;
 end;
 
@@ -412,9 +420,9 @@ begin
       terminal_color('white');
       if Game.IsDebug then
       begin
-        terminal_print(0, 0, Format('X:%d, Y:%d', [RX, RY]));
-        terminal_print(0, 1, Format('MX:%d, MY:%d', [MX, MY]));
-        terminal_print(0, 2, Format('CW:%d, CH:%d',
+        terminal_print(0, 1, Format('X:%d, Y:%d', [RX, RY]));
+        terminal_print(0, 2, Format('MX:%d, MY:%d', [MX, MY]));
+        terminal_print(0, 3, Format('CW:%d, CH:%d',
           [terminal_state(TK_CELL_WIDTH), terminal_state(TK_CELL_HEIGHT)]));
       end;
     end;

@@ -66,9 +66,11 @@ begin
     if (MY = 0) then
     begin
       case MX of
+        0 .. 13:
+          Key := TK_L;
         80 .. 89:
           Key := TK_ESCAPE;
-        25 .. 34:
+        45 .. 55:
           Key := TK_P;
       end;
     end

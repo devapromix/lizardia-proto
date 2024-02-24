@@ -19,11 +19,12 @@ type
     destructor Destroy; override;
     property IsDebug: Boolean read FIsDebug;
     property Turn: Integer read FTurn;
-	property Fullscreen: Boolean read FFullscreen write FFullscreen;
+    property Fullscreen: Boolean read FFullscreen write FFullscreen;
     property IsPause: Boolean read FIsPause write FIsPause;
     property IsGame: Boolean read FIsGame write FIsGame;
     property Map: TMap read FMap;
-	procedure Refresh;
+    procedure Refresh;
+    procedure Step;
   end;
 
 var
@@ -60,6 +61,14 @@ begin
     terminal_set('window: fullscreen=true')
   else
     terminal_set('window: fullscreen=false');
+end;
+
+procedure TGame.Step;
+begin
+  if not IsGame or IsPause then
+    Exit;
+  Inc(FTurn);
+
 end;
 
 destructor TGame.Destroy;

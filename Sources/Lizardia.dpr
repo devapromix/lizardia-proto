@@ -50,6 +50,7 @@ begin
       end;
       terminal_refresh();
       terminal_delay(25);
+      Game.Step;
     until (Key = TK_CLOSE);
     terminal_close();
   finally
