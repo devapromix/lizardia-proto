@@ -3,7 +3,8 @@
 interface
 
 type
-  TResourceEnum = (rsStone, rsWood, rsPlanks, rsWool, rsRope, rsLeather);
+  TResourceEnum = (rsStone, rsCoal, rsIronOre, rsSilverOre, rsWood, rsPlanks,
+    rsWool, rsRope, rsLeather);
 
 type
   TResourceRec = record
@@ -31,12 +32,14 @@ var
   LResourceEnum: TResourceEnum;
 begin
   FResource[rsStone].Name := 'Stone';
+  FResource[rsCoal].Name := 'Coal';
+  FResource[rsIronOre].Name := 'Iron Ore';
+  FResource[rsSilverOre].Name := 'Silver Ore';
   FResource[rsWood].Name := 'Wood';
   FResource[rsPlanks].Name := 'Planks';
   FResource[rsWool].Name := 'Wool';
   FResource[rsRope].Name := 'Rope';
   FResource[rsLeather].Name := 'Leather';
-  FResource[rs].Name := '';
   for LResourceEnum := Low(TResourceEnum) to High(TResourceEnum) do
     FResource[LResourceEnum].Value := 0;
 end;
