@@ -52,7 +52,7 @@ begin
       begin
         LName := 'Tiny Insulae';
         FBuildingType := ABuildingType;
-        FLevel := 4;
+        FLevel := 7;
       end;
   else
     begin

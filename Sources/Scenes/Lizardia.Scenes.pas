@@ -199,7 +199,7 @@ begin
 
   DrawText(15, 0, Format('Turn:%d', [Game.Turn]));
   DrawText(70, 0, Format('Pop:%d/%d', [Game.Map.LizardmanList.List.Count,
-    Game.Map.Building[btInsulae].Level * 3]));
+    Game.Map.Building[2].Level * 3]));
 
   if (Scenes.FSceneEnum <> scWorld) then
   begin
