@@ -12,7 +12,10 @@ type
     // Land
     tlGrass, tlDirt, tlSand, tlTree, tlRock, tlWater,
     // Buildings
-    tlTownHall, tlStorehouse);
+    tlTownHall, tlStorehouse, tlInsulae);
+
+const
+  LandTiles = [tlGrass, tlDirt, tlSand, tlTree];
 
 type
   TTile = record
@@ -41,6 +44,9 @@ const
     BkColor: 'darkest yellow'),
     //
     (Name: 'Storehouse'; Tile: 'S'; Color: 'light yellow';
+    BkColor: 'darkest yellow'),
+    //
+    (Name: 'Tiny Insulae'; Tile: 'H'; Color: 'light yellow';
     BkColor: 'darkest yellow')
     //
     );
@@ -157,6 +163,13 @@ begin
         Building[Length(Building) - 1] :=
           TBuilding.Create(ABuildingType, AX, AY);
       end;
+    btInsulae:
+      begin
+        Cell[AX][AY] := tlInsulae;
+        SetLength(Building, Length(Building) + 1);
+        Building[Length(Building) - 1] :=
+          TBuilding.Create(ABuildingType, AX, AY);
+      end;
   end;
 end;
 
@@ -212,6 +225,8 @@ end;
 procedure TMap.Gen;
 var
   I, J, X, Y, L: Integer;
+var
+  LBuildingType: TBuildingType;
 begin
   Clear;
   //
@@ -250,17 +265,19 @@ begin
   repeat
     X := Math.RandomRange(FWidth div 4, (FWidth div 4) * 3);
     Y := Math.RandomRange(FHeight div 4, (FHeight div 4) * 3);
-  until (Cell[X][Y] = tlGrass);
+  until (Cell[X][Y] in LandTiles);
   FSpawn.X := X;
   FSpawn.Y := Y;
-  for I := 0 to 20 do
+  for I := 0 to 2 do // max 20
     FLizardmanList.Add(X, Y);
-  PlaceBuilding(btTownHall, FSpawn.X, FSpawn.Y);
-  repeat
-    X := Math.RandomRange(-1, 2);
-    Y := Math.RandomRange(-1, 2);
-  until (X <> 0) and (Y <> 0);
-  PlaceBuilding(btStorehouse, FSpawn.X + X + X, FSpawn.Y + Y + Y);
+  for LBuildingType := btTownHall to btInsulae do
+  begin
+    repeat
+      X := Math.RandomRange(-3, 4) + FSpawn.X;
+      Y := Math.RandomRange(-3, 4) + FSpawn.Y;
+    until (X <> 0) and (Y <> 0) and (Cell[X][Y] in LandTiles);
+    PlaceBuilding(LBuildingType, X, Y);
+  end;
 end;
 
 function TMap.GetTile: TTiles;

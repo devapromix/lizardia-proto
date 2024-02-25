@@ -4,6 +4,7 @@ interface
 
 uses
   Lizardia.Map,
+  Lizardia.Pop,
   Lizardia.Resources;
 
 type
@@ -16,6 +17,7 @@ type
     FIsGame: Boolean;
     FFullscreen: Boolean;
     FResource: TResource;
+    FPop: TPop;
   public
     constructor Create;
     destructor Destroy; override;
@@ -25,6 +27,7 @@ type
     property Fullscreen: Boolean read FFullscreen write FFullscreen;
     property IsPause: Boolean read FIsPause write FIsPause;
     property IsGame: Boolean read FIsGame write FIsGame;
+    property Pop: TPop read FPop write FPop;
     property Map: TMap read FMap;
     procedure Refresh;
     procedure Step;
@@ -54,6 +57,7 @@ begin
     if (LowerCase(ParamStr(I)) = '-debug') then
       FIsDebug := True;
   end;
+  FPop := TPop.Create;
   FResource := TResource.Create;
   FMap := TMap.Create;
   FMap.Gen;
@@ -77,6 +81,7 @@ end;
 
 destructor TGame.Destroy;
 begin
+  FPop.Free;
   FMap.Free;
   FResource.Free;
   inherited;

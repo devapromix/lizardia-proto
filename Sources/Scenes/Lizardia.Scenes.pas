@@ -101,7 +101,8 @@ uses
   Lizardia.Scene.Menu.Main,
   Lizardia.Scene.Menu.Game,
   Lizardia.Scene.Lizardman.List,
-  Lizardia.Scene.Storehouse;
+  Lizardia.Scene.Storehouse,
+  Lizardia.Buildings;
 
 procedure TScene.DrawText(const X, Y: Integer; Text: string;
   const Align: Integer = TK_ALIGN_LEFT);
@@ -197,6 +198,8 @@ begin
   terminal_clear_area(0, 0, 90, 1);
 
   DrawText(15, 0, Format('Turn:%d', [Game.Turn]));
+  DrawText(70, 0, Format('Pop:%d/%d', [Game.Map.LizardmanList.List.Count,
+    Game.Map.Building[btInsulae].Level * 3]));
 
   if (Scenes.FSceneEnum <> scWorld) then
   begin

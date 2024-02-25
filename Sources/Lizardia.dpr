@@ -20,7 +20,8 @@ uses
   Lizardia.Resources in 'Game\Lizardia.Resources.pas',
   Lizardia.Scene.Storehouse in 'Scenes\Lizardia.Scene.Storehouse.pas',
   Lizardia.Buildings in 'Game\Lizardia.Buildings.pas',
-  Lizardia.MapObject in 'Game\Lizardia.MapObject.pas';
+  Lizardia.MapObject in 'Game\Lizardia.MapObject.pas',
+  Lizardia.Pop in 'Game\Lizardia.Pop.pas';
 
 var
   Key: Word = 0;
