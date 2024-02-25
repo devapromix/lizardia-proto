@@ -32,7 +32,7 @@ procedure TSceneStorehouse.Render;
 var
   LResourceEnum: TResourceEnum;
   LLeft, LTop: Integer;
-  LNum: string;
+  LNum: Integer;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
@@ -43,10 +43,13 @@ begin
   LLeft := 0;
   for LResourceEnum := Low(LResourceEnum) to High(LResourceEnum) do
   begin
+    LNum := Game.Resource.GetResource(LResourceEnum).Value;
+    // if LNum <= 0 then
+    // Continue;
     DrawText(LLeft * 17 + 12, LTop + 5,
       Game.Resource.GetResource(LResourceEnum).Name);
-    LNum := Game.Resource.GetResource(LResourceEnum).Value.ToString;
-    DrawText(LLeft * 17 + 12 + (15 - Length(LNum)), LTop + 5, LNum);
+    DrawText(LLeft * 17 + 12 + (15 - Length(LNum.ToString)), LTop + 5,
+      LNum.ToString);
     Inc(LTop);
     if (LTop > 20) then
     begin
