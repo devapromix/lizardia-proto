@@ -11,7 +11,7 @@ type
 
   TSceneWorld = class(TScene)
   private
-
+    procedure DrawTileBkColor(const ABkColor: string = 'gray');
   public
     procedure Render; override;
     procedure Update(var Key: Word); override;
@@ -24,13 +24,16 @@ uses
   Math,
   SysUtils,
   BearLibTerminal,
-  Lizardia.Game;
+  Lizardia.Game,
+  Lizardia.Map;
 
 { TSceneWorld }
 
 class procedure TSceneWorld.GlobalKeys(var Key: Word);
 begin
   case Key of
+    TK_B:
+      ;
     TK_P:
       begin
         Game.IsPause := not Game.IsPause;
@@ -43,20 +46,30 @@ begin
   end;
 end;
 
+procedure TSceneWorld.DrawTileBkColor(const ABkColor: string = 'gray');
+begin
+  terminal_bkcolor(ABkColor);
+  terminal_put(MX, MY, $2588);
+end;
+
 procedure TSceneWorld.Render;
 begin
   DrawMap(ScreenWidth, ScreenHeight);
 
   DrawBar;
 
-  if (MY >= ScreenHeight - 1) then
+  DrawTileBkColor;
+  terminal_color('black');
+  terminal_put(MX, MY, Tile[Game.Map.GetTile].Glyph);
+
+  { if (MY >= ScreenHeight - 1) then
     ScrollDown;
-  if (MY <= 0) then
+    if (MY <= 0) then
     ScrollUp;
-  if (MX >= ScreenWidth - 1) then
+    if (MX >= ScreenWidth - 1) then
     ScrollRight;
-  if (MX <= 0) then
-    ScrollLeft;
+    if (MX <= 0) then
+    ScrollLeft; }
 end;
 
 procedure TSceneWorld.Update(var Key: Word);

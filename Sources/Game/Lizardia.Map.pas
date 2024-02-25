@@ -65,7 +65,8 @@ type
     procedure Clear;
     procedure Draw(const AWidth, AHeight: Integer);
     procedure Gen;
-    function GetTile(const AX, AY: Integer): TTiles;
+    function GetTile(const AX, AY: Integer): TTiles; overload;
+    function GetTile: TTiles; overload;
     property LizardmanList: TLizardmanList read FLizardmanList;
     property Spawn: TLocation read FSpawn;
   end;
@@ -199,6 +200,16 @@ begin
   FSpawn.Y := Y;
   for I := 0 to 20 do
     FLizardmanList.Add(X, Y);
+end;
+
+function TMap.GetTile: TTiles;
+var
+  LX, LY: Integer;
+begin
+  Result := tlGrass;
+  LX := EnsureRange(Left + terminal_state(TK_MOUSE_X), 0, FWidth);
+  LY := EnsureRange(Top + terminal_state(TK_MOUSE_Y), 0, FHeight);
+  Result := Cell[LX][LY];
 end;
 
 function TMap.GetTile(const AX, AY: Integer): TTiles;
