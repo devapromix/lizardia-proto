@@ -18,7 +18,8 @@ type
   private
     FBuildingType: TBuildingType;
   public
-    constructor Create(const AName: string; const AX, AY: Integer);
+    constructor Create(const ABuildingType: TBuildingType;
+      const AX, AY: Integer);
     destructor Destroy; override;
     property BuildingType: TBuildingType read FBuildingType;
   end;
@@ -27,10 +28,29 @@ implementation
 
 { TBuilding }
 
-constructor TBuilding.Create(const AName: string; const AX, AY: Integer);
+constructor TBuilding.Create(const ABuildingType: TBuildingType;
+  const AX, AY: Integer);
+var
+  LName: string;
 begin
-  inherited Create(AName, AX, AY);
-  FBuildingType := btNone;
+  inherited Create(LName, AX, AY);
+  case ABuildingType of
+    btTownHall:
+      begin
+        LName := 'Town Hall';
+        FBuildingType := ABuildingType;
+      end;
+    btStorehouse:
+      begin
+        LName := 'Storehouse';
+        FBuildingType := ABuildingType;
+      end;
+  else
+    begin
+      LName := '';
+      FBuildingType := btNone;
+    end;
+  end;
 end;
 
 destructor TBuilding.Destroy;

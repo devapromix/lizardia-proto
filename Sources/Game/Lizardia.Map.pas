@@ -4,10 +4,15 @@ interface
 
 uses
   Lizardia.Entity,
+  Lizardia.Buildings,
   Lizardia.Lizardman.List;
 
 type
-  TTiles = (tlGrass, tlDirt, tlSand, tlTree, tlRock, tlWater);
+  TTiles = (
+    // Land
+    tlGrass, tlDirt, tlSand, tlTree, tlRock, tlWater,
+    // Buildings
+    tlTownHall, tlStorehouse);
 
 type
   TTile = record
@@ -30,7 +35,13 @@ const
     //
     (Name: 'Rock'; Tile: '#'; Color: 'dark gray'; BkColor: 'darkest grey'),
     //
-    (Name: 'Water'; Tile: '='; Color: 'blue'; BkColor: 'darkest blue')
+    (Name: 'Water'; Tile: '='; Color: 'blue'; BkColor: 'darkest blue'),
+    //
+    (Name: 'Town Hall'; Tile: 'T'; Color: 'light yellow';
+    BkColor: 'darkest yellow'),
+    //
+    (Name: 'Storehouse'; Tile: 'S'; Color: 'light yellow';
+    BkColor: 'darkest yellow')
     //
     );
 
@@ -56,6 +67,7 @@ type
     procedure AddSpot(const AX, AY: Integer; const ATile: TTiles;
       const Max: Integer = 300);
   public
+    Building: array of TBuilding;
     constructor Create;
     destructor Destroy; override;
     property Top: Word read FTop write FTop;
@@ -69,6 +81,9 @@ type
     function GetTile: TTiles; overload;
     property LizardmanList: TLizardmanList read FLizardmanList;
     property Spawn: TLocation read FSpawn;
+    procedure PlaceBuilding(const ABuildingType: TBuildingType;
+      const AX, AY: Integer);
+    function GetCurrentBuilding(const AX, AY: Integer): Integer;
   end;
 
 implementation
@@ -80,6 +95,16 @@ uses
   Lizardia.Game;
 
 { TMap }
+
+function TMap.GetCurrentBuilding(const AX, AY: Integer): Integer;
+var
+  LBuildingIndex: Integer;
+begin
+  Result := -1;
+  for LBuildingIndex := 0 to Length(Building) - 1 do
+    if Building[LBuildingIndex].InLocation(AX, AY) then
+      Exit(LBuildingIndex);
+end;
 
 procedure TMap.AddSpot(const AX, AY: Integer; const ATile: TTiles;
   const Max: Integer = 300);
@@ -114,8 +139,30 @@ begin
   end;
 end;
 
+procedure TMap.PlaceBuilding(const ABuildingType: TBuildingType;
+  const AX, AY: Integer);
+begin
+  case ABuildingType of
+    btTownHall:
+      begin
+        Cell[AX][AY] := tlTownHall;
+        SetLength(Building, Length(Building) + 1);
+        Building[Length(Building) - 1] :=
+          TBuilding.Create(ABuildingType, AX, AY);
+      end;
+    btStorehouse:
+      begin
+        Cell[AX][AY] := tlStorehouse;
+        SetLength(Building, Length(Building) + 1);
+        Building[Length(Building) - 1] :=
+          TBuilding.Create(ABuildingType, AX, AY);
+      end;
+  end;
+end;
+
 procedure TMap.Clear;
 var
+  LBuildingIndex: Integer;
   X, Y: Integer;
 begin
   Resize;
@@ -123,6 +170,9 @@ begin
     for X := 0 to FWidth - 1 do
       Cell[X][Y] := tlGrass;
   FLizardmanList.Clear;
+  for LBuildingIndex := 0 to Length(Building) - 1 do
+    Building[LBuildingIndex].Free;
+  SetLength(Building, 0);
 end;
 
 constructor TMap.Create;
@@ -132,7 +182,12 @@ begin
 end;
 
 destructor TMap.Destroy;
+var
+  LBuildingIndex: Integer;
 begin
+  for LBuildingIndex := 0 to Length(Building) - 1 do
+    Building[LBuildingIndex].Free;
+  SetLength(Building, 0);
   FLizardmanList.Free;
   inherited;
 end;
@@ -200,6 +255,12 @@ begin
   FSpawn.Y := Y;
   for I := 0 to 20 do
     FLizardmanList.Add(X, Y);
+  PlaceBuilding(btTownHall, FSpawn.X, FSpawn.Y);
+  repeat
+    X := Math.RandomRange(-1, 2);
+    Y := Math.RandomRange(-1, 2);
+  until (X <> 0) and (Y <> 0);
+  PlaceBuilding(btStorehouse, FSpawn.X + X + X, FSpawn.Y + Y + Y);
 end;
 
 function TMap.GetTile: TTiles;

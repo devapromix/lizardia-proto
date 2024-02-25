@@ -25,7 +25,8 @@ uses
   SysUtils,
   BearLibTerminal,
   Lizardia.Game,
-  Lizardia.Map;
+  Lizardia.Map,
+  Lizardia.Buildings;
 
 { TSceneWorld }
 
@@ -53,14 +54,21 @@ begin
 end;
 
 procedure TSceneWorld.Render;
+var
+  LCurrentBuilding: Integer;
 begin
   DrawMap(ScreenWidth, ScreenHeight);
 
   DrawBar;
 
-  DrawTileBkColor;
+  LCurrentBuilding := Game.Map.GetCurrentBuilding(RX, RY);
+  if LCurrentBuilding >= 0 then
+    DrawTileBkColor('light yellow')
+  else
+    DrawTileBkColor;
+
   terminal_color('black');
-  terminal_put(MX, MY, Tile[Game.Map.GetTile].Glyph);
+  terminal_put(MX, MY, Tile[Game.Map.GetTile].Tile);
 
   { if (MY >= ScreenHeight - 1) then
     ScrollDown;
@@ -74,10 +82,18 @@ end;
 
 procedure TSceneWorld.Update(var Key: Word);
 var
-  I: Integer;
+  LCurrentBuilding: Integer;
 begin
   if (Key = TK_MOUSE_LEFT) then
   begin
+    LCurrentBuilding := Game.Map.GetCurrentBuilding(RX, RY);
+    if LCurrentBuilding >= 0 then
+      case Game.Map.Building[LCurrentBuilding].BuildingType of
+        btTownHall:
+          Scenes.SetScene(scLizardmanList);
+        btStorehouse:
+          Scenes.SetScene(scStorehouse);
+      end;
     if (MY = 0) then
     begin
       case MX of
