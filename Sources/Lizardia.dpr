@@ -21,7 +21,8 @@ uses
   Lizardia.Scene.Storehouse in 'Scenes\Lizardia.Scene.Storehouse.pas',
   Lizardia.Buildings in 'Game\Lizardia.Buildings.pas',
   Lizardia.MapObject in 'Game\Lizardia.MapObject.pas',
-  Lizardia.Pop in 'Game\Lizardia.Pop.pas';
+  Lizardia.Pop in 'Game\Lizardia.Pop.pas',
+  Lizardia.Scene.TownHall in 'Scenes\Lizardia.Scene.TownHall.pas';
 
 var
   Key: Word = 0;

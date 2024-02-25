@@ -40,10 +40,12 @@ begin
         Game.IsPause := not Game.IsPause;
         Scenes.Render;
       end;
-    TK_L:
+    TK_H:
       Scenes.SetScene(scLizardmanList);
     TK_S:
       Scenes.SetScene(scStorehouse);
+    TK_T:
+      Scenes.SetScene(scTownHall);
   end;
 end;
 
@@ -90,6 +92,8 @@ begin
     if LCurrentBuilding >= 0 then
       case Game.Map.Building[LCurrentBuilding].BuildingType of
         btTownHall:
+          Scenes.SetScene(scTownHall);
+        btInsulae:
           Scenes.SetScene(scLizardmanList);
         btStorehouse:
           Scenes.SetScene(scStorehouse);
