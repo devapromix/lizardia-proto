@@ -33,8 +33,6 @@ uses
 class procedure TSceneWorld.GlobalKeys(var Key: Word);
 begin
   case Key of
-    TK_B:
-      ;
     TK_P:
       begin
         Game.IsPause := not Game.IsPause;
@@ -47,7 +45,7 @@ begin
     TK_T:
       Scenes.SetScene(scTownHall);
     TK_C:
-      Scenes.SetScene(scWorkshop);
+      Scenes.SetScene(scCraft);
     TK_B:
       Scenes.SetScene(scBuildMenu);
   end;

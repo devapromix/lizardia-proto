@@ -2,6 +2,9 @@
 
 interface
 
+uses
+  Lizardia.Buildings;
+
 type
   TResourceEnum = (rsStone, rsCoal, rsIronOre, rsIron, rsSilverOre, rsSilver,
     rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather);
@@ -10,12 +13,15 @@ type
   TResourceRec = record
     Name: string;
     Value: Integer;
+    BuildingType: TBuildingType;
   end;
 
 type
   TResource = class(TObject)
   private
     FResource: array [TResourceEnum] of TResourceRec;
+    procedure Add(const AResourceEnum: TResourceEnum; const AName: string;
+      const ABuildingType: TBuildingType = btNone);
   public
     constructor Create;
     destructor Destroy; override;
@@ -27,25 +33,29 @@ implementation
 
 { TResource }
 
-procedure TResource.Clear;
-var
-  LResourceEnum: TResourceEnum;
+procedure TResource.Add(const AResourceEnum: TResourceEnum; const AName: string;
+  const ABuildingType: TBuildingType);
 begin
-  FResource[rsStone].Name := 'Stone';
-  FResource[rsCoal].Name := 'Coal';
-  FResource[rsIronOre].Name := 'Iron Ore';
-  FResource[rsIron].Name := 'Iron';
-  FResource[rsSilverOre].Name := 'Silver Ore';
-  FResource[rsSilver].Name := 'Silver';
-  FResource[rsGoldOre].Name := 'Gold ore';
-  FResource[rsGold].Name := 'Gold';
-  FResource[rsWood].Name := 'Wood';
-  FResource[rsPlanks].Name := 'Planks';
-  FResource[rsWool].Name := 'Wool';
-  FResource[rsRope].Name := 'Rope';
-  FResource[rsLeather].Name := 'Leather';
-  for LResourceEnum := Low(TResourceEnum) to High(TResourceEnum) do
-    FResource[LResourceEnum].Value := 0;
+  FResource[AResourceEnum].Name := AName;
+  FResource[AResourceEnum].BuildingType := ABuildingType;
+  FResource[AResourceEnum].Value := 0;
+end;
+
+procedure TResource.Clear;
+begin
+  Add(rsStone, 'Stone', btNone);
+  Add(rsCoal, 'Coal', btNone);
+  Add(rsIronOre, 'Iron Ore', btNone);
+  Add(rsIron, 'Iron', btBlacksmiths);
+  Add(rsSilverOre, 'Silver Ore', btNone);
+  Add(rsSilver, 'Silver', btBlacksmiths);
+  Add(rsGoldOre, 'Gold ore', btNone);
+  Add(rsGold, 'Gold', btBlacksmiths);
+  Add(rsWood, 'Wood', btNone);
+  Add(rsPlanks, 'Planks', btWorkshop);
+  Add(rsWool, 'Wool', btNone);
+  Add(rsRope, 'Rope', btNone);
+  Add(rsLeather, 'Leather', btNone);
 end;
 
 constructor TResource.Create;

@@ -6,9 +6,9 @@ uses
   Lizardia.MapObject;
 
 type
-  TBuildingType = (btNone, btTownHall, btStorehouse, btInsulae, btBlacksmiths,
-    btFarm, btQuarry, btSawmill, btInn, btMill, btCoalMine, btSilverMine,
-    btGoldMine, btIronMine, btBarracks, btWorkshop);
+  TBuildingType = (btNone, btTownHall, btStorehouse, btInsulae, btWorkshop,
+    btBlacksmiths, btLabrtory, btFarm, btQuarry, btSawmill, btInn, btMill,
+    btCoalMine, btSilverMine, btGoldMine, btIronMine, btBarracks);
 
 type
 

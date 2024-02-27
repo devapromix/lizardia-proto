@@ -7,7 +7,7 @@ uses
 
 type
   TSceneEnum = (scWorld, scMainMenu, scGameMenu, scBuildMenu, scLizardmanList,
-    scStorehouse, scTownHall, scWorkshop);
+    scStorehouse, scTownHall, scCraft);
 
 type
   TButtonRec = record
@@ -398,7 +398,7 @@ begin
   FScene[scStorehouse] := TSceneStorehouse.Create;
   FScene[scLizardmanList] := TSceneLizardmanList.Create;
   FScene[scTownHall] := TSceneTownHall.Create;
-  FScene[scWorkshop] := TSceneCraft.Create;
+  FScene[scCraft] := TSceneCraft.Create;
   FScene[scBuildMenu] := TSceneBuild.Create;
 end;
 
