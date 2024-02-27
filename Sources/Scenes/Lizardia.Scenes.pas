@@ -194,27 +194,25 @@ begin
 end;
 
 procedure TScene.DrawBar;
+var
+  LEnableButton: Boolean;
 begin
   terminal_color('white');
   terminal_bkcolor('darkest gray');
   terminal_clear_area(0, 0, 90, 1);
 
-  DrawText(15, 0, Format('Turn:%d', [Game.Turn]));
+  DrawText(56, 0, Format('Turn:%d', [Game.Turn]));
   DrawText(70, 0, Format('Pop:%d/%d', [Game.Map.LizardmanList.List.Count,
     Game.Map.Building[2].Level * 3]));
 
-  if (Scenes.FSceneEnum <> scWorld) then
-  begin
-    DrawButton(0, 0, False, 'L', 'LIZARDMANS');
-    DrawButton(15, 0, False, 'S', 'STOREHOUSE');
-    DrawButton(80, 0, False, 'ESC', 'MENU');
-  end
-  else
-  begin
-    DrawButton(0, 0, 'L', 'LIZARDMANS');
-    DrawButton(15, 0, 'S', 'STOREHOUSE');
-    DrawButton(80, 0, 'ESC', 'MENU');
-  end;
+  LEnableButton := (Scenes.FSceneEnum = scWorld);
+
+  DrawButton(0, 0, LEnableButton, 'H', 'HOUSE');
+  DrawButton(10, 0, LEnableButton, 'S', 'STOREHOUSE');
+  DrawButton(25, 0, LEnableButton, 'B', 'BUILD');
+  DrawButton(35, 0, LEnableButton, 'C', 'CRAFT');
+  DrawButton(80, 0, LEnableButton, 'ESC', 'MENU');
+
   if (Scenes.FSceneEnum <> scWorld) and (Scenes.FSceneEnum <> scGameMenu) then
   begin
     if Game.IsPause then
