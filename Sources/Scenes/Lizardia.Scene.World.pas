@@ -101,10 +101,14 @@ begin
     if (MY = 0) then
     begin
       case MX of
-        0 .. 13:
-          Key := TK_L;
-        15 .. 28:
+        0 .. 8:
+          Key := TK_H;
+        10 .. 23:
           Key := TK_S;
+        25 .. 33:
+          Key := TK_B;
+        35 .. 43:
+          Key := TK_C;
         80 .. 89:
           Key := TK_ESCAPE;
         45 .. 55:

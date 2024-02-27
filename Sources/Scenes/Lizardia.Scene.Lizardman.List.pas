@@ -55,7 +55,7 @@ begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(15, 1, 60, 29);
-  DrawTitle(3, 'LIST OF LIZARDMANS');
+  DrawTitle(3, 'HOUSE');
 
   for LLizardmanIndex := 0 to Game.Map.LizardmanList.List.Count - 1 do
     if LLizardmanIndex = SelectedLizarman then
@@ -67,6 +67,7 @@ begin
 
   DrawLizardmanInfo();
 
+  AddButton(27, 'U', 'Upgrade house');
   AddButton(27, 'Esc', 'Close');
 
   DrawBar;
@@ -84,12 +85,18 @@ begin
           AKey := TK_A + (MY - 5);
       end;
     if (GetButtonsY = MY) then
-      if (MX >= 40) and (MX <= 50) then
+    begin
+      if (MX >= 30) and (MX <= 46) then
+        AKey := TK_Z;
+      if (MX >= 50) and (MX <= 60) then
         AKey := TK_ESCAPE;
+    end;
   end;
   case AKey of
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
+    TK_Z:
+      ;
     TK_A .. TK_U:
       begin
         LLizardmanIndex := AKey - TK_A;

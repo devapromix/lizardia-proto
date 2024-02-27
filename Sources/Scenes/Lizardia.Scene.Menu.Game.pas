@@ -31,12 +31,18 @@ begin
   DrawFrame(15, 7, 60, 17);
   DrawTitle(9, 'LIZARDIA');
 
-  DrawButton(17, 11, 'L', 'LIST OF LIZARDMANS');
+  DrawButton(17, 11, 'H', 'House');
+  DrawButton(17, 16, 'S', 'Storehouse');
 
   if Game.IsPause then
     DrawButton(47, 16, 'P', 'Paused game')
   else
     DrawButton(47, 16, 'P', 'Pause game');
+
+  DrawButton(47, 17, 'B', 'Build');
+  DrawButton(47, 18, 'C', 'Craft');
+
+
   AddButton(21, 'Q', 'Quit');
   AddButton(21, 'ESC', 'Close');
 
@@ -51,7 +57,7 @@ begin
       17 .. 43:
         case MY of
           11:
-            AKey := TK_L;
+            AKey := TK_H;
           12:
             AKey := TK_N;
           14:
@@ -62,6 +68,8 @@ begin
             AKey := TK_S;
           17:
             AKey := TK_A;
+          18:
+            AKey := TK_M;
         end;
       47 .. 73:
         case MY of
@@ -74,11 +82,13 @@ begin
           14:
             AKey := TK_D;
           15:
-            AKey := TK_B;
+            AKey := TK_Z;
           16:
             AKey := TK_P;
           17:
-            AKey := TK_X;
+            AKey := TK_B;
+          18:
+            AKey := TK_C;
         end;
     end;
     if (GetButtonsY = MY) then
