@@ -1,4 +1,4 @@
-﻿unit Lizardia.Scene.Building.Well;
+﻿unit Lizardia.Scene.Building.Sawmill;
 
 interface
 
@@ -7,9 +7,9 @@ uses
 
 type
 
-  { TSceneWell }
+  { TSceneSawmill }
 
-  TSceneWell = class(TScene)
+  TSceneSawmill = class(TScene)
   private
 
   public
@@ -19,31 +19,34 @@ type
 
 implementation
 
-{ TSceneWell }
+{ TSceneSawmill }
 
 uses
   SysUtils,
   Lizardia.Game,
   Lizardia.Resources,
-  BearLibTerminal;
+  BearLibTerminal,
+  Lizardia.Tasks;
 
-procedure TSceneWell.Render;
+procedure TSceneSawmill.Render;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(25, 10, 40, 10);
-  DrawTitle(12, 'WELL');
+  DrawTitle(12, 'SAWMILL');
 
-  DrawText(27, 14, Format('Water: %d / +%d',
-    [Game.Resource.GetResource(rsWater).Value, 999]));
+  DrawText(27, 14, Format('Wood: %d',
+    [Game.Resource.GetResource(rsWood).Value]));
+  DrawText(27, 15, Format('Planks: %d / +%d',
+    [Game.Resource.GetResource(rsPlanks).Value, 999]));
 
-  AddButton(17, 'Tab', 'Draw water');
+  AddButton(17, 'Tab', 'Make planks');
   AddButton(17, 'Esc', 'Close');
 
   DrawBar;
 end;
 
-procedure TSceneWell.Update(var AKey: Word);
+procedure TSceneSawmill.Update(var AKey: Word);
 begin
   if (AKey = TK_MOUSE_LEFT) then
   begin
@@ -57,7 +60,7 @@ begin
   end;
   case AKey of
     TK_TAB:
-      Game.Resource.AddResource(rsWater);
+      Game.Resource.AddResource(rsPlanks);
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
   end;

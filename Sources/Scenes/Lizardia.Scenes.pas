@@ -108,7 +108,8 @@ uses
   Lizardia.Scene.Building.Storehouse,
   Lizardia.Scene.Building.TownHall,
   Lizardia.Scene.Building.Well,
-  Lizardia.Scene.Building.Quarry;
+  Lizardia.Scene.Building.Quarry,
+  Lizardia.Scene.Building.Sawmill;
 
 procedure TScene.DrawText(const X, Y: Integer; Text: string;
   const Align: Integer = TK_ALIGN_LEFT);
@@ -404,6 +405,7 @@ begin
   FScene[scBuildMenu] := TSceneBuild.Create;
   FScene[scWell] := TSceneWell.Create;
   FScene[scQuarry] := TSceneQuarry.Create;
+  FScene[scSawmill] := TSceneSawmill.Create;
 end;
 
 procedure TScenes.Update(var Key: Word);
