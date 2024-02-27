@@ -28,7 +28,8 @@ uses
   SysUtils,
   Lizardia.Game,
   Lizardia.Lizardman.List,
-  Lizardia.Palette;
+  Lizardia.Palette,
+  Lizardia.Resources;
 
 { TSceneLizardmanList }
 
@@ -66,6 +67,9 @@ begin
         Game.Map.LizardmanList.List[LLizardmanIndex].Name);
 
   DrawLizardmanInfo();
+
+  DrawText(42, 19, Format('Food: %d/0',
+    [Game.Resource.GetResource(rsFood).Value]));
 
   AddButton(27, 'U', 'Upgrade house');
   AddButton(27, 'Esc', 'Close');

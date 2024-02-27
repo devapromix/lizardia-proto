@@ -7,7 +7,8 @@ uses
 
 type
   TResourceEnum = (rsStone, rsCoal, rsIronOre, rsIron, rsSilverOre, rsSilver,
-    rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather, rsWater);
+    rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather,
+    rsWater, rsFood);
 
 type
   TResourceRec = record
@@ -65,6 +66,7 @@ begin
   Add(rsRope, 'Rope', btNone);
   Add(rsLeather, 'Leather', btNone);
   Add(rsWater, 'Water', btNone);
+  Add(rsFood, 'Food', btNone);
 end;
 
 constructor TResource.Create;

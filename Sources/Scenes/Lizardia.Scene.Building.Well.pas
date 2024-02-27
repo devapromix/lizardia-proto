@@ -34,7 +34,7 @@ begin
   DrawFrame(25, 10, 40, 10);
   DrawTitle(12, 'WELL');
 
-  DrawText(27, 14, Format('Water: %d',
+  DrawText(27, 14, Format('Water: %d/0',
     [Game.Resource.GetResource(rsWater).Value]));
 
   AddButton(17, 'Tab', 'Draw water');
