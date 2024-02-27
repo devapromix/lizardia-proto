@@ -1,4 +1,4 @@
-﻿unit Lizardia.Scene.Storehouse;
+﻿unit Lizardia.Scene.Building.Storehouse;
 
 interface
 

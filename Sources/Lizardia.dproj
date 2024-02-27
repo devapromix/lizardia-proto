@@ -82,19 +82,20 @@
         <DCCReference Include="Game\Lizardia.Lizardman.pas"/>
         <DCCReference Include="Game\Lizardia.Lizardman.Factory.pas"/>
         <DCCReference Include="Game\Lizardia.Lizardman.List.pas"/>
+        <DCCReference Include="Game\Lizardia.Resources.pas"/>
         <DCCReference Include="Game\Lizardia.Map.pas"/>
         <DCCReference Include="Game\Lizardia.Game.pas"/>
+        <DCCReference Include="Game\Lizardia.Buildings.pas"/>
+        <DCCReference Include="Game\Lizardia.MapObject.pas"/>
+        <DCCReference Include="Game\Lizardia.Pop.pas"/>
         <DCCReference Include="Scenes\Lizardia.Scenes.pas"/>
         <DCCReference Include="Scenes\Lizardia.Scene.World.pas"/>
         <DCCReference Include="Scenes\Lizardia.Scene.Menu.Main.pas"/>
         <DCCReference Include="Scenes\Lizardia.Scene.Menu.Game.pas"/>
-        <DCCReference Include="Scenes\Lizardia.Scene.Lizardman.List.pas"/>
-        <DCCReference Include="Game\Lizardia.Resources.pas"/>
-        <DCCReference Include="Scenes\Lizardia.Scene.Storehouse.pas"/>
-        <DCCReference Include="Game\Lizardia.Buildings.pas"/>
-        <DCCReference Include="Game\Lizardia.MapObject.pas"/>
-        <DCCReference Include="Game\Lizardia.Pop.pas"/>
-        <DCCReference Include="Scenes\Lizardia.Scene.TownHall.pas"/>
+        <DCCReference Include="Scenes\Lizardia.Scene.Building.House.pas"/>
+        <DCCReference Include="Scenes\Lizardia.Scene.Building.Storehouse.pas"/>
+        <DCCReference Include="Scenes\Lizardia.Scene.Building.TownHall.pas"/>
+        <DCCReference Include="Scenes\Lizardia.Scene.Craft.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

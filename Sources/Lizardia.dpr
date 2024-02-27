@@ -10,19 +10,20 @@ uses
   Lizardia.Lizardman in 'Game\Lizardia.Lizardman.pas',
   Lizardia.Lizardman.Factory in 'Game\Lizardia.Lizardman.Factory.pas',
   Lizardia.Lizardman.List in 'Game\Lizardia.Lizardman.List.pas',
+  Lizardia.Resources in 'Game\Lizardia.Resources.pas',
   Lizardia.Map in 'Game\Lizardia.Map.pas',
   Lizardia.Game in 'Game\Lizardia.Game.pas',
+  Lizardia.Buildings in 'Game\Lizardia.Buildings.pas',
+  Lizardia.MapObject in 'Game\Lizardia.MapObject.pas',
+  Lizardia.Pop in 'Game\Lizardia.Pop.pas',
   Lizardia.Scenes in 'Scenes\Lizardia.Scenes.pas',
   Lizardia.Scene.World in 'Scenes\Lizardia.Scene.World.pas',
   Lizardia.Scene.Menu.Main in 'Scenes\Lizardia.Scene.Menu.Main.pas',
   Lizardia.Scene.Menu.Game in 'Scenes\Lizardia.Scene.Menu.Game.pas',
-  Lizardia.Scene.Lizardman.List in 'Scenes\Lizardia.Scene.Lizardman.List.pas',
-  Lizardia.Resources in 'Game\Lizardia.Resources.pas',
-  Lizardia.Scene.Storehouse in 'Scenes\Lizardia.Scene.Storehouse.pas',
-  Lizardia.Buildings in 'Game\Lizardia.Buildings.pas',
-  Lizardia.MapObject in 'Game\Lizardia.MapObject.pas',
-  Lizardia.Pop in 'Game\Lizardia.Pop.pas',
-  Lizardia.Scene.TownHall in 'Scenes\Lizardia.Scene.TownHall.pas';
+  Lizardia.Scene.Building.House in 'Scenes\Lizardia.Scene.Building.House.pas',
+  Lizardia.Scene.Building.Storehouse in 'Scenes\Lizardia.Scene.Building.Storehouse.pas',
+  Lizardia.Scene.Building.TownHall in 'Scenes\Lizardia.Scene.Building.TownHall.pas',
+  Lizardia.Scene.Craft in 'Scenes\Lizardia.Scene.Craft.pas';
 
 var
   Key: Word = 0;

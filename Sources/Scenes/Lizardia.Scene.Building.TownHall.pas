@@ -1,4 +1,4 @@
-﻿unit Lizardia.Scene.TownHall;
+﻿unit Lizardia.Scene.Building.TownHall;
 
 interface
 

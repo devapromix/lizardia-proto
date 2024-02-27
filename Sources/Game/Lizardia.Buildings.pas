@@ -8,7 +8,7 @@ uses
 type
   TBuildingType = (btNone, btTownHall, btStorehouse, btInsulae, btBlacksmiths,
     btFarm, btQuarry, btSawmill, btInn, btMill, btCoalMine, btSilverMine,
-    btGoldMine, btIronMine, btBarracks);
+    btGoldMine, btIronMine, btBarracks, btWorkshop);
 
 type
 
