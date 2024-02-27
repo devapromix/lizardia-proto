@@ -46,6 +46,10 @@ begin
       Scenes.SetScene(scStorehouse);
     TK_T:
       Scenes.SetScene(scTownHall);
+    TK_C:
+      Scenes.SetScene(scWorkshop);
+    TK_B:
+      Scenes.SetScene(scBuildMenu);
   end;
 end;
 

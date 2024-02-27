@@ -23,7 +23,8 @@ uses
   Lizardia.Scene.Building.House in 'Scenes\Lizardia.Scene.Building.House.pas',
   Lizardia.Scene.Building.Storehouse in 'Scenes\Lizardia.Scene.Building.Storehouse.pas',
   Lizardia.Scene.Building.TownHall in 'Scenes\Lizardia.Scene.Building.TownHall.pas',
-  Lizardia.Scene.Craft in 'Scenes\Lizardia.Scene.Craft.pas';
+  Lizardia.Scene.Craft in 'Scenes\Lizardia.Scene.Craft.pas',
+  Lizardia.Scene.Menu.Build in 'Scenes\Lizardia.Scene.Menu.Build.pas';
 
 var
   Key: Word = 0;

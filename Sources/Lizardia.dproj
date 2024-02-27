@@ -96,6 +96,7 @@
         <DCCReference Include="Scenes\Lizardia.Scene.Building.Storehouse.pas"/>
         <DCCReference Include="Scenes\Lizardia.Scene.Building.TownHall.pas"/>
         <DCCReference Include="Scenes\Lizardia.Scene.Craft.pas"/>
+        <DCCReference Include="Scenes\Lizardia.Scene.Menu.Build.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
