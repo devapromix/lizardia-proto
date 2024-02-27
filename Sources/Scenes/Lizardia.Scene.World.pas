@@ -48,6 +48,8 @@ begin
       Scenes.SetScene(scCraft);
     TK_B:
       Scenes.SetScene(scBuildMenu);
+    TK_U:
+      Scenes.SetScene(scWell);
   end;
 end;
 

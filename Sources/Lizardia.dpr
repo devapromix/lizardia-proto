@@ -24,7 +24,8 @@ uses
   Lizardia.Scene.Building.Storehouse in 'Scenes\Lizardia.Scene.Building.Storehouse.pas',
   Lizardia.Scene.Building.TownHall in 'Scenes\Lizardia.Scene.Building.TownHall.pas',
   Lizardia.Scene.Craft in 'Scenes\Lizardia.Scene.Craft.pas',
-  Lizardia.Scene.Menu.Build in 'Scenes\Lizardia.Scene.Menu.Build.pas';
+  Lizardia.Scene.Menu.Build in 'Scenes\Lizardia.Scene.Menu.Build.pas',
+  Lizardia.Scene.Building.Well in 'Scenes\Lizardia.Scene.Building.Well.pas';
 
 var
   Key: Word = 0;

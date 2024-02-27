@@ -12,7 +12,7 @@ type
     // Land
     tlGrass, tlDirt, tlSand, tlTree, tlRock, tlWater,
     // Buildings
-    tlTownHall, tlStorehouse, tlInsulae, tlWorkshop);
+    tlTownHall, tlStorehouse, tlInsulae, tlWorkshop, tlWell);
 
 const
   LandTiles = [tlGrass, tlDirt, tlSand, tlTree];
@@ -50,7 +50,9 @@ const
     BkColor: 'darkest yellow'),
     //
     (Name: 'Workshop'; Tile: 'W'; Color: 'light yellow';
-    BkColor: 'darkest yellow')
+    BkColor: 'darkest yellow'),
+    //
+    (Name: 'Well'; Tile: 'U'; Color: 'light blue'; BkColor: 'darkest yellow')
     //
     );
 

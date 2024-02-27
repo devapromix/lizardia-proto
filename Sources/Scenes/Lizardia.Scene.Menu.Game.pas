@@ -39,6 +39,7 @@ begin
   else
     DrawButton(47, 16, 'P', 'Pause game');
 
+  DrawButton(47, 13, 'U', 'Well');
   DrawButton(47, 17, 'B', 'Build');
   DrawButton(47, 18, 'C', 'Craft');
 
