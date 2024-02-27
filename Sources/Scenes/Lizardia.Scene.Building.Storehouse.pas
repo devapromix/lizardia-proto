@@ -37,7 +37,7 @@ begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(10, 1, 70, 29);
-  DrawTitle(3, 'STOREHOUSE');
+  DrawTitle(3, 'STORAGE');
 
   LTop := 0;
   LLeft := 0;

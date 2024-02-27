@@ -68,10 +68,10 @@ begin
 
   DrawLizardmanInfo();
 
-  DrawText(42, 19, Format('Food: %d/0',
+  DrawText(42, 19, Format('Food: %d',
     [Game.Resource.GetResource(rsFood).Value]));
 
-  AddButton(27, 'U', 'Upgrade house');
+  AddButton(27, 'Tab', 'Upgrade house');
   AddButton(27, 'Esc', 'Close');
 
   DrawBar;
@@ -90,16 +90,16 @@ begin
       end;
     if (GetButtonsY = MY) then
     begin
-      if (MX >= 30) and (MX <= 46) then
-        AKey := TK_Z;
-      if (MX >= 50) and (MX <= 60) then
+      if (MX >= 29) and (MX <= 47) then
+        AKey := TK_TAB;
+      if (MX >= 51) and (MX <= 61) then
         AKey := TK_ESCAPE;
     end;
   end;
   case AKey of
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
-    TK_Z:
+    TK_TAB:
       ;
     TK_A .. TK_U:
       begin

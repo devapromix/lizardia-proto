@@ -40,6 +40,10 @@ begin
       end;
     TK_H:
       Scenes.SetScene(scLizardmanList);
+    TK_Y:
+      Scenes.SetScene(scQuarry);
+    TK_M:
+      Scenes.SetScene(scSawmill);
     TK_S:
       Scenes.SetScene(scStorehouse);
     TK_T:

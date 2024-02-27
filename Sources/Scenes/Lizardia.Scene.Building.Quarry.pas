@@ -1,4 +1,4 @@
-﻿unit Lizardia.Scene.Building.Well;
+﻿unit Lizardia.Scene.Building.Quarry;
 
 interface
 
@@ -7,9 +7,9 @@ uses
 
 type
 
-  { TSceneWell }
+  { TSceneQuarry }
 
-  TSceneWell = class(TScene)
+  TSceneQuarry = class(TScene)
   private
 
   public
@@ -19,7 +19,7 @@ type
 
 implementation
 
-{ TSceneWell }
+{ TSceneQuarry }
 
 uses
   SysUtils,
@@ -27,23 +27,23 @@ uses
   Lizardia.Resources,
   BearLibTerminal;
 
-procedure TSceneWell.Render;
+procedure TSceneQuarry.Render;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(25, 10, 40, 10);
-  DrawTitle(12, 'WELL');
+  DrawTitle(12, 'STONE QUARRY');
 
-  DrawText(27, 14, Format('Water: %d',
-    [Game.Resource.GetResource(rsWater).Value]));
+  DrawText(27, 14, Format('Stones: %d',
+    [Game.Resource.GetResource(rsStones).Value]));
 
-  AddButton(17, 'Tab', 'Draw water');
+  AddButton(17, 'Tab', 'To mine stones');
   AddButton(17, 'Esc', 'Close');
 
   DrawBar;
 end;
 
-procedure TSceneWell.Update(var AKey: Word);
+procedure TSceneQuarry.Update(var AKey: Word);
 begin
   if (AKey = TK_MOUSE_LEFT) then
   begin
@@ -57,7 +57,7 @@ begin
   end;
   case AKey of
     TK_TAB:
-      Game.Resource.AddResource(rsWater);
+      Game.Resource.AddResource(rsStones);
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
   end;

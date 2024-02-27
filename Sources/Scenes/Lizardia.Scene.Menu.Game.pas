@@ -32,7 +32,9 @@ begin
   DrawTitle(9, 'LIZARDIA');
 
   DrawButton(17, 11, 'H', 'House');
-  DrawButton(17, 16, 'S', 'Storehouse');
+  DrawButton(17, 16, 'S', 'Storage');
+  DrawButton(17, 17, 'Y', 'Quarry');
+  DrawButton(17, 18, 'M', 'Sawmill');
 
   if Game.IsPause then
     DrawButton(47, 16, 'P', 'Paused game')
@@ -68,7 +70,7 @@ begin
           16:
             AKey := TK_S;
           17:
-            AKey := TK_A;
+            AKey := TK_Y;
           18:
             AKey := TK_M;
         end;

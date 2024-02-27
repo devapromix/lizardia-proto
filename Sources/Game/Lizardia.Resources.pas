@@ -6,14 +6,14 @@ uses
   Lizardia.Buildings;
 
 type
-  TResourceEnum = (rsStone, rsCoal, rsIronOre, rsIron, rsSilverOre, rsSilver,
+  TResourceEnum = (rsStones, rsCoal, rsIronOre, rsIron, rsSilverOre, rsSilver,
     rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather,
     rsWater, rsFood);
 
 type
   TResourceRec = record
     Name: string;
-    Value: Integer;
+    Value: Cardinal;
     BuildingType: TBuildingType;
   end;
 
@@ -28,8 +28,12 @@ type
     destructor Destroy; override;
     procedure Clear;
     function GetResource(const AResourceEnum: TResourceEnum): TResourceRec;
-    procedure ModifyResource(const AResourceEnum: TResourceEnum;
-      const AValue: Integer = 1);
+    procedure AddResource(const AResourceEnum: TResourceEnum;
+      const AValue: Cardinal = 1);
+    function DelResource(const AResourceEnum: TResourceEnum;
+      const AValue: Cardinal = 1): Boolean;
+    function HasResource(const AResourceEnum: TResourceEnum;
+      const AValue: Cardinal = 1): Boolean;
   end;
 
 implementation
@@ -44,15 +48,15 @@ begin
   FResource[AResourceEnum].Value := 0;
 end;
 
-procedure TResource.ModifyResource(const AResourceEnum: TResourceEnum;
-  const AValue: Integer = 1);
+procedure TResource.AddResource(const AResourceEnum: TResourceEnum;
+  const AValue: Cardinal = 1);
 begin
   FResource[AResourceEnum].Value := FResource[AResourceEnum].Value + AValue;
 end;
 
 procedure TResource.Clear;
 begin
-  Add(rsStone, 'Stone', btNone);
+  Add(rsStones, 'Stones', btNone);
   Add(rsCoal, 'Coal', btNone);
   Add(rsIronOre, 'Iron Ore', btNone);
   Add(rsIron, 'Iron', btBlacksmiths);
@@ -74,6 +78,17 @@ begin
   Self.Clear;
 end;
 
+function TResource.DelResource(const AResourceEnum: TResourceEnum;
+  const AValue: Cardinal): Boolean;
+begin
+  Result := False;
+  if HasResource(AResourceEnum, AValue) then
+  begin
+    FResource[AResourceEnum].Value := FResource[AResourceEnum].Value - AValue;
+    Result := True;
+  end;
+end;
+
 destructor TResource.Destroy;
 begin
 
@@ -84,6 +99,12 @@ function TResource.GetResource(const AResourceEnum: TResourceEnum)
   : TResourceRec;
 begin
   Result := FResource[AResourceEnum];
+end;
+
+function TResource.HasResource(const AResourceEnum: TResourceEnum;
+  const AValue: Cardinal): Boolean;
+begin
+  Result := FResource[AResourceEnum].Value >= AValue;
 end;
 
 end.
