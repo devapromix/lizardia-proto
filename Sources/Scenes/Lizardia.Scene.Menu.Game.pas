@@ -32,6 +32,7 @@ begin
   DrawTitle(9, 'LIZARDIA');
 
   DrawButton(17, 11, 'H', 'House');
+  DrawButton(17, 12, 'K', 'Woodcutter''s Hut');
   DrawButton(17, 16, 'S', 'Storage');
   DrawButton(17, 17, 'Y', 'Quarry');
   DrawButton(17, 18, 'M', 'Sawmill');
@@ -62,7 +63,7 @@ begin
           11:
             AKey := TK_H;
           12:
-            AKey := TK_N;
+            AKey := TK_K;
           14:
             AKey := TK_R;
           15:

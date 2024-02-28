@@ -6,7 +6,7 @@ uses
   System.Generics.Collections;
 
 type
-  TTaskType = (ttNone, ttMakePlanks, ttDrawWater, ttMineStones);
+  TTaskType = (ttNone, ttMakePlanks, ttDrawWater, ttMineStones, ttCutTree);
 
 type
   TTask = record
@@ -37,7 +37,9 @@ const
     //
     (Name: 'Working'; TaskType: ttDrawWater; Turns: 50),
     //
-    (Name: 'Digging'; TaskType: ttMineStones; Turns: 500)
+    (Name: 'Digging'; TaskType: ttMineStones; Turns: 500),
+    //
+    (Name: 'Cut tree'; TaskType: ttCutTree; Turns: 150)
     //
     );
 
@@ -100,6 +102,11 @@ begin
         List[I].Task.Turn;
       if (List[I].Task.Turns = 0) and (List[I].Task.TaskType <> ttNone) then
         case List[I].Task.TaskType of
+          ttCutTree:
+            begin
+              Game.Resource.AddResource(rsWood);
+              List[I].Task.Clear;
+            end;
           ttMakePlanks:
             begin
               Game.Resource.AddResource(rsPlanks, 3);

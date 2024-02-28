@@ -28,7 +28,8 @@ uses
   Lizardia.Scene.Building.Well in 'Scenes\Lizardia.Scene.Building.Well.pas',
   Lizardia.Scene.Building.Quarry in 'Scenes\Lizardia.Scene.Building.Quarry.pas',
   Lizardia.Scene.Building.Sawmill in 'Scenes\Lizardia.Scene.Building.Sawmill.pas',
-  Lizardia.Tasks in 'Game\Lizardia.Tasks.pas';
+  Lizardia.Tasks in 'Game\Lizardia.Tasks.pas',
+  Lizardia.Scene.Building.WoodcuttersHut in 'Scenes\Lizardia.Scene.Building.WoodcuttersHut.pas';
 
 var
   Key: Word = 0;

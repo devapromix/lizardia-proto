@@ -7,7 +7,8 @@ uses
 
 type
   TSceneEnum = (scWorld, scMainMenu, scGameMenu, scBuildMenu, scLizardmanList,
-    scStorehouse, scTownHall, scCraft, scWell, scQuarry, scSawmill);
+    scStorehouse, scTownHall, scCraft, scWell, scQuarry, scSawmill,
+    scWoodcuttersHut);
 
 type
   TButtonRec = record
@@ -109,7 +110,8 @@ uses
   Lizardia.Scene.Building.TownHall,
   Lizardia.Scene.Building.Well,
   Lizardia.Scene.Building.Quarry,
-  Lizardia.Scene.Building.Sawmill;
+  Lizardia.Scene.Building.Sawmill,
+  Lizardia.Scene.Building.WoodcuttersHut;
 
 procedure TScene.DrawText(const X, Y: Integer; Text: string;
   const Align: Integer = TK_ALIGN_LEFT);
@@ -406,6 +408,7 @@ begin
   FScene[scWell] := TSceneWell.Create;
   FScene[scQuarry] := TSceneQuarry.Create;
   FScene[scSawmill] := TSceneSawmill.Create;
+  FScene[scWoodcuttersHut] := TSceneWoodcuttersHut.Create;
 end;
 
 procedure TScenes.Update(var Key: Word);

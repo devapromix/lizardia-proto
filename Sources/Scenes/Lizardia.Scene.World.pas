@@ -50,6 +50,8 @@ begin
       Scenes.SetScene(scTownHall);
     TK_C:
       Scenes.SetScene(scCraft);
+    TK_K:
+      Scenes.SetScene(scWoodcuttersHut);
     TK_B:
       Scenes.SetScene(scBuildMenu);
     TK_U:
