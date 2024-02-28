@@ -45,7 +45,7 @@ procedure TResource.Add(const AResourceEnum: TResourceEnum; const AName: string;
 begin
   FResource[AResourceEnum].Name := AName;
   FResource[AResourceEnum].BuildingType := ABuildingType;
-  FResource[AResourceEnum].Value := 0;
+  FResource[AResourceEnum].Value := 999;
 end;
 
 procedure TResource.AddResource(const AResourceEnum: TResourceEnum;

@@ -26,7 +26,9 @@ uses
   Lizardia.Scene.Craft in 'Scenes\Lizardia.Scene.Craft.pas',
   Lizardia.Scene.Menu.Build in 'Scenes\Lizardia.Scene.Menu.Build.pas',
   Lizardia.Scene.Building.Well in 'Scenes\Lizardia.Scene.Building.Well.pas',
-  Lizardia.Scene.Building.Quarry in 'Scenes\Lizardia.Scene.Building.Quarry.pas';
+  Lizardia.Scene.Building.Quarry in 'Scenes\Lizardia.Scene.Building.Quarry.pas',
+  Lizardia.Scene.Building.Sawmill in 'Scenes\Lizardia.Scene.Building.Sawmill.pas',
+  Lizardia.Tasks in 'Game\Lizardia.Tasks.pas';
 
 var
   Key: Word = 0;

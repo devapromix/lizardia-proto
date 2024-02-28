@@ -5,6 +5,7 @@ interface
 uses
   Lizardia.Map,
   Lizardia.Pop,
+  Lizardia.Tasks,
   Lizardia.Resources;
 
 type
@@ -18,6 +19,7 @@ type
     FFullscreen: Boolean;
     FResource: TResource;
     FPop: TPop;
+    FTasks: TTasks;
   public
     constructor Create;
     destructor Destroy; override;
@@ -28,6 +30,7 @@ type
     property IsPause: Boolean read FIsPause write FIsPause;
     property IsGame: Boolean read FIsGame write FIsGame;
     property Pop: TPop read FPop write FPop;
+    property Tasks: TTasks read FTasks write FTasks;
     property Map: TMap read FMap;
     procedure Refresh;
     procedure Step;
@@ -41,7 +44,8 @@ implementation
 uses
   SysUtils,
   Lizardia.Entity,
-  BearLibTerminal;
+  BearLibTerminal,
+  Lizardia.Lizardman.List;
 
 { TGame }
 
@@ -57,6 +61,7 @@ begin
     if (LowerCase(ParamStr(I)) = '-debug') then
       FIsDebug := True;
   end;
+  FTasks := TTasks.Create;
   FPop := TPop.Create;
   FResource := TResource.Create;
   FMap := TMap.Create;
@@ -76,11 +81,12 @@ begin
   if not IsGame or IsPause then
     Exit;
   Inc(FTurn);
-
+  Game.Tasks.TryGetTask;
 end;
 
 destructor TGame.Destroy;
 begin
+  FTasks.Free;
   FPop.Free;
   FMap.Free;
   FResource.Free;

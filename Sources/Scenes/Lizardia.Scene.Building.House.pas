@@ -47,6 +47,8 @@ begin
     Length(Game.Map.LizardmanList.List[FSelectedLizarman].Name)));
   terminal_composition(TK_OFF);
   terminal_color(TPalette.Default);
+  DrawText(42, 7, Game.Map.LizardmanList.List[FSelectedLizarman]
+    .Task.Name);
 end;
 
 procedure TSceneLizardmanList.Render;

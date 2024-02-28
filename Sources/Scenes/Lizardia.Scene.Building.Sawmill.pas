@@ -38,7 +38,8 @@ begin
   DrawText(27, 14, Format('Wood: %d',
     [Game.Resource.GetResource(rsWood).Value]));
   DrawText(27, 15, Format('Planks: %d / +%d',
-    [Game.Resource.GetResource(rsPlanks).Value, 999]));
+    [Game.Resource.GetResource(rsPlanks).Value,
+    Game.Tasks.GetCount(ttMakePlanks)]));
 
   AddButton(17, 'Tab', 'Make planks');
   AddButton(17, 'Esc', 'Close');
@@ -60,7 +61,11 @@ begin
   end;
   case AKey of
     TK_TAB:
-      Game.Resource.AddResource(rsPlanks);
+      if Game.Resource.HasResource(rsWood) then
+      begin
+        Game.Resource.DelResource(rsWood);
+        Game.Tasks.Add(ttMakePlanks);
+      end;
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
   end;

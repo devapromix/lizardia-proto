@@ -25,7 +25,8 @@ uses
   SysUtils,
   Lizardia.Game,
   Lizardia.Resources,
-  BearLibTerminal;
+  BearLibTerminal,
+  Lizardia.Tasks;
 
 procedure TSceneWell.Render;
 begin
@@ -35,7 +36,8 @@ begin
   DrawTitle(12, 'WELL');
 
   DrawText(27, 14, Format('Water: %d / +%d',
-    [Game.Resource.GetResource(rsWater).Value, 999]));
+    [Game.Resource.GetResource(rsWater).Value,
+    Game.Tasks.GetCount(ttDrawWater)]));
 
   AddButton(17, 'Tab', 'Draw water');
   AddButton(17, 'Esc', 'Close');
@@ -57,7 +59,7 @@ begin
   end;
   case AKey of
     TK_TAB:
-      Game.Resource.AddResource(rsWater);
+      Game.Tasks.Add(ttDrawWater);
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
   end;

@@ -25,7 +25,8 @@ uses
   SysUtils,
   Lizardia.Game,
   Lizardia.Resources,
-  BearLibTerminal;
+  BearLibTerminal,
+  Lizardia.Tasks;
 
 procedure TSceneQuarry.Render;
 begin
@@ -34,10 +35,11 @@ begin
   DrawFrame(25, 10, 40, 10);
   DrawTitle(12, 'STONE QUARRY');
 
-  DrawText(27, 14, Format('Stones: %d',
-    [Game.Resource.GetResource(rsStones).Value]));
+  DrawText(27, 14, Format('Stones: %d / +%d',
+    [Game.Resource.GetResource(rsStones).Value,
+    Game.Tasks.GetCount(ttMineStones)]));
 
-  AddButton(17, 'Tab', 'To mine stones');
+  AddButton(17, 'Tab', 'Mine stones');
   AddButton(17, 'Esc', 'Close');
 
   DrawBar;
@@ -57,7 +59,7 @@ begin
   end;
   case AKey of
     TK_TAB:
-      Game.Resource.AddResource(rsStones);
+      Game.Tasks.Add(ttMineStones);
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
   end;
