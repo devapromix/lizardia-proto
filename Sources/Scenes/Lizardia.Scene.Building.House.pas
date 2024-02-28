@@ -29,7 +29,8 @@ uses
   Lizardia.Game,
   Lizardia.Lizardman.List,
   Lizardia.Palette,
-  Lizardia.Resources;
+  Lizardia.Resources,
+  Lizardia.Tasks;
 
 { TSceneLizardmanList }
 
@@ -47,8 +48,8 @@ begin
     Length(Game.Map.LizardmanList.List[FSelectedLizarman].Name)));
   terminal_composition(TK_OFF);
   terminal_color(TPalette.Default);
-  DrawText(42, 7, Game.Map.LizardmanList.List[FSelectedLizarman]
-    .Task.Name);
+  DrawText(42, 7, TaskBase[Game.Map.LizardmanList.List[FSelectedLizarman]
+    .Task.TaskType].Name);
 end;
 
 procedure TSceneLizardmanList.Render;
