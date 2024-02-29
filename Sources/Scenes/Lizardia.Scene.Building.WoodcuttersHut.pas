@@ -29,14 +29,21 @@ uses
   Lizardia.Tasks;
 
 procedure TSceneWoodcuttersHut.Render;
+var
+  LCount: Integer;
 begin
   Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
 
   DrawFrame(25, 10, 40, 10);
   DrawTitle(12, 'Woodcutter''s Hut');
 
-  DrawText(27, 14, Format('Wood: %d / +%d',
-    [Game.Resource.GetResource(rsWood).Value, Game.Tasks.GetCount(ttCutTree)]));
+  LCount := Game.Tasks.GetCount(ttCutTree);
+  if (LCount > 0) then
+    DrawText(27, 14, Format('%s: %d / +%d', [ResourceBase[rsWood].Name,
+      Game.Resource.GetResource(rsWood).Value, LCount]))
+  else
+    DrawText(27, 14, Format('%s: %d', [ResourceBase[rsWood].Name,
+      Game.Resource.GetResource(rsWood).Value]));
 
   AddButton(17, 'Tab', 'Cut tree');
   AddButton(17, 'Esc', 'Close');
