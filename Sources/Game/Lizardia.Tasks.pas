@@ -89,6 +89,14 @@ end;
 procedure TTasks.TryGetTask;
 var
   I: Integer;
+
+  procedure AddResource(const AResourceEnum: TResourceEnum;
+    const AValue: Cardinal = 1);
+  begin
+    Game.Resource.AddResource(AResourceEnum, AValue);
+    Game.Map.LizardmanList.List[I].Task.Clear;
+  end;
+
 begin
   with Game.Map.LizardmanList do
     for I := 0 to List.Count - 1 do
@@ -103,25 +111,13 @@ begin
       if (List[I].Task.Turns = 0) and (List[I].Task.TaskType <> ttNone) then
         case List[I].Task.TaskType of
           ttCutTree:
-            begin
-              Game.Resource.AddResource(rsWood);
-              List[I].Task.Clear;
-            end;
+            AddResource(rsWood);
           ttMakePlanks:
-            begin
-              Game.Resource.AddResource(rsPlanks, 3);
-              List[I].Task.Clear;
-            end;
+            AddResource(rsPlanks, 3);
           ttDrawWater:
-            begin
-              Game.Resource.AddResource(rsWater);
-              List[I].Task.Clear;
-            end;
+            AddResource(rsWater);
           ttMineStones:
-            begin
-              Game.Resource.AddResource(rsStones);
-              List[I].Task.Clear;
-            end;
+            AddResource(rsStones);
         end;
     end;
 end;
