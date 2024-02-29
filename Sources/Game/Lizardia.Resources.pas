@@ -13,16 +13,51 @@ type
 type
   TResourceRec = record
     Name: string;
-    Value: Cardinal;
     BuildingType: TBuildingType;
+    Value: Cardinal;
   end;
+
+const
+  ResourceBase: array [TResourceEnum] of TResourceRec = (
+    //
+    (Name: 'Stones'; BuildingType: btNone;),
+    //
+    (Name: 'Coal'; BuildingType: btNone;),
+    //
+    (Name: 'IronOre'; BuildingType: btNone;),
+    //
+    (Name: 'Iron'; BuildingType: btBlacksmiths;),
+    //
+    (Name: 'Silver Ore'; BuildingType: btNone;),
+    //
+    (Name: 'Silver'; BuildingType: btBlacksmiths;),
+    //
+    (Name: 'Gold ore'; BuildingType: btNone;),
+    //
+    (Name: 'Gold'; BuildingType: btBlacksmiths;),
+    //
+    (Name: 'Wood'; BuildingType: btNone;),
+    //
+    (Name: 'Planks'; BuildingType: btWorkshop;),
+    //
+    (Name: 'Wool'; BuildingType: btNone;),
+    //
+    (Name: 'Rope'; BuildingType: btNone;),
+    //
+    (Name: 'Leather'; BuildingType: btNone;),
+    //
+    (Name: 'Water'; BuildingType: btNone;),
+    //
+    (Name: 'Food'; BuildingType: btNone;)
+    //
+    // (Name: ''; BuildingType: rs;)
+    //
+    );
 
 type
   TResource = class(TObject)
   private
     FResource: array [TResourceEnum] of TResourceRec;
-    procedure Add(const AResourceEnum: TResourceEnum; const AName: string;
-      const ABuildingType: TBuildingType = btNone);
   public
     constructor Create;
     destructor Destroy; override;
@@ -40,14 +75,6 @@ implementation
 
 { TResource }
 
-procedure TResource.Add(const AResourceEnum: TResourceEnum; const AName: string;
-  const ABuildingType: TBuildingType);
-begin
-  FResource[AResourceEnum].Name := AName;
-  FResource[AResourceEnum].BuildingType := ABuildingType;
-  FResource[AResourceEnum].Value := 999;
-end;
-
 procedure TResource.AddResource(const AResourceEnum: TResourceEnum;
   const AValue: Cardinal = 1);
 begin
@@ -55,22 +82,16 @@ begin
 end;
 
 procedure TResource.Clear;
+var
+  LResourceEnum: TResourceEnum;
 begin
-  Add(rsStones, 'Stones', btNone);
-  Add(rsCoal, 'Coal', btNone);
-  Add(rsIronOre, 'Iron Ore', btNone);
-  Add(rsIron, 'Iron', btBlacksmiths);
-  Add(rsSilverOre, 'Silver Ore', btNone);
-  Add(rsSilver, 'Silver', btBlacksmiths);
-  Add(rsGoldOre, 'Gold ore', btNone);
-  Add(rsGold, 'Gold', btBlacksmiths);
-  Add(rsWood, 'Wood', btNone);
-  Add(rsPlanks, 'Planks', btWorkshop);
-  Add(rsWool, 'Wool', btNone);
-  Add(rsRope, 'Rope', btNone);
-  Add(rsLeather, 'Leather', btNone);
-  Add(rsWater, 'Water', btNone);
-  Add(rsFood, 'Food', btNone);
+  for LResourceEnum := Low(TResourceEnum) to High(TResourceEnum) do
+    with FResource[LResourceEnum] do
+    begin
+      Name := ResourceBase[LResourceEnum].Name;
+      BuildingType := ResourceBase[LResourceEnum].BuildingType;
+      Value := 0;
+    end;
 end;
 
 constructor TResource.Create;
