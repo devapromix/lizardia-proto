@@ -41,11 +41,9 @@ begin
 
   LTop := 0;
   LLeft := 0;
-  for LResourceEnum := Low(LResourceEnum) to High(LResourceEnum) do
+  for LResourceEnum := Succ(Low(LResourceEnum)) to High(LResourceEnum) do
   begin
     LNum := Game.Resource.GetResource(LResourceEnum).Value;
-    // if LNum <= 0 then
-    // Continue;
     DrawText(LLeft * 17 + 12, LTop + 5,
       Game.Resource.GetResource(LResourceEnum).Name);
     DrawText(LLeft * 17 + 12 + (15 - Length(LNum.ToString)), LTop + 5,

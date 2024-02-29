@@ -3,7 +3,8 @@
 interface
 
 uses
-  System.Generics.Collections;
+  System.Generics.Collections,
+  Lizardia.Resources;
 
 type
   TTaskType = (ttNone, ttMakePlanks, ttDrawWater, ttMineStones, ttCutTree);
@@ -13,6 +14,8 @@ type
     Name: string;
     TaskType: TTaskType;
     Turns: Integer;
+    ResourceEnum: TResourceEnum;
+    Count: Integer;
     procedure Turn;
     procedure Clear;
   end;
@@ -31,23 +34,27 @@ type
 const
   TaskBase: array [TTaskType] of TTask = (
     //
-    (Name: 'Doing nothing'; TaskType: ttNone; Turns: 0),
+    (Name: 'Doing nothing'; TaskType: ttNone; Turns: 0; ResourceEnum: rsNone;
+    Count: 0),
     //
-    (Name: 'Working'; TaskType: ttMakePlanks; Turns: 300),
+    (Name: 'Working'; TaskType: ttMakePlanks; Turns: 300;
+    ResourceEnum: rsPlanks; Count: 3),
     //
-    (Name: 'Working'; TaskType: ttDrawWater; Turns: 50),
+    (Name: 'Working'; TaskType: ttDrawWater; Turns: 50; ResourceEnum: rsWater;
+    Count: 1),
     //
-    (Name: 'Digging'; TaskType: ttMineStones; Turns: 500),
+    (Name: 'Digging'; TaskType: ttMineStones; Turns: 500;
+    ResourceEnum: rsStones; Count: 1),
     //
-    (Name: 'Cut tree'; TaskType: ttCutTree; Turns: 150)
+    (Name: 'Cut tree'; TaskType: ttCutTree; Turns: 150;
+    ResourceEnum: rsWood; Count: 1)
     //
     );
 
 implementation
 
 uses
-  Lizardia.Game,
-  Lizardia.Resources;
+  Lizardia.Game;
 
 { TTask }
 
@@ -109,16 +116,8 @@ begin
       if List[I].Task.Turns > 0 then
         List[I].Task.Turn;
       if (List[I].Task.Turns = 0) and (List[I].Task.TaskType <> ttNone) then
-        case List[I].Task.TaskType of
-          ttCutTree:
-            AddResource(rsWood);
-          ttMakePlanks:
-            AddResource(rsPlanks, 3);
-          ttDrawWater:
-            AddResource(rsWater);
-          ttMineStones:
-            AddResource(rsStones);
-        end;
+        AddResource(TaskBase[List[I].Task.TaskType].ResourceEnum,
+          TaskBase[List[I].Task.TaskType].Count);
     end;
 end;
 

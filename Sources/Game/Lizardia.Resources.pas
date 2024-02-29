@@ -6,8 +6,8 @@ uses
   Lizardia.Buildings;
 
 type
-  TResourceEnum = (rsStones, rsCoal, rsIronOre, rsIron, rsSilverOre, rsSilver,
-    rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather,
+  TResourceEnum = (rsNone, rsStones, rsCoal, rsIronOre, rsIron, rsSilverOre,
+    rsSilver, rsGoldOre, rsGold, rsWood, rsPlanks, rsWool, rsRope, rsLeather,
     rsWater, rsFood);
 
 type
@@ -19,6 +19,8 @@ type
 
 const
   ResourceBase: array [TResourceEnum] of TResourceRec = (
+    //
+    (Name: ''; BuildingType: btNone;),
     //
     (Name: 'Stones'; BuildingType: btNone;),
     //
