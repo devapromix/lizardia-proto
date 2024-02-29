@@ -36,6 +36,7 @@ begin
   DrawText(22, 14, Format('Population: %d/%d',
     [Game.Map.LizardmanList.List.Count, Game.Map.Building[2].Level * 3]));
 
+  AddButton(17, 'Tab', 'Hire Lizardman');
   AddButton(17, 'Esc', 'Close');
 
   DrawBar;
@@ -47,9 +48,13 @@ begin
   begin
     if (GetButtonsY = MY) then
       if (MX >= 40) and (MX <= 50) then
-        AKey := TK_ESCAPE;
+        AKey := TK_TAB;
+    if (MX >= 40) and (MX <= 50) then
+      AKey := TK_ESCAPE;
   end;
   case AKey of
+    TK_TAB:
+      ;
     TK_ESCAPE:
       Scenes.SetScene(scWorld);
   end;
