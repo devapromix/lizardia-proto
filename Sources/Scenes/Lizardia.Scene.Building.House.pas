@@ -43,12 +43,12 @@ procedure TSceneLizardmanList.DrawLizardmanInfo;
 begin
   terminal_color(TPalette.Selected);
   terminal_composition(TK_ON);
-  DrawText(42, 5, Game.Map.LizardmanList.List[FSelectedLizarman].Name);
-  DrawText(42, 5, StringOfChar('_',
+  DrawText(42, 8, Game.Map.LizardmanList.List[FSelectedLizarman].Name);
+  DrawText(42, 8, StringOfChar('_',
     Length(Game.Map.LizardmanList.List[FSelectedLizarman].Name)));
   terminal_composition(TK_OFF);
   terminal_color(TPalette.Default);
-  DrawText(42, 7, TaskBase[Game.Map.LizardmanList.List[FSelectedLizarman]
+  DrawText(42, 10, TaskBase[Game.Map.LizardmanList.List[FSelectedLizarman]
     .Task.TaskType].Name);
 end;
 
@@ -71,8 +71,10 @@ begin
 
   DrawLizardmanInfo();
 
-  DrawText(42, 19, Format('Food: %d',
-    [Game.Resource.GetResource(rsFood).Value]));
+  DrawText(42, 5, Format('Population: %d/%d',
+    [Game.Map.LizardmanList.List.Count, Game.Map.Building[2].Level * 3]));
+  DrawText(42, 6, Format('Food: %d', [Game.Resource.GetResource(rsFood)
+    .Value]));
 
   AddButton(27, 'Tab', 'Upgrade house');
   AddButton(27, 'Esc', 'Close');

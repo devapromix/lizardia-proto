@@ -280,7 +280,7 @@ begin
   until (Cell[X][Y] in LandTiles);
   FSpawn.X := X;
   FSpawn.Y := Y;
-  for I := 0 to 2 do // max 20
+  for I := 0 to 0 do // max 20
     FLizardmanList.Add(X, Y);
   for LBuildingType := btTownHall to btInsulae do
   begin
