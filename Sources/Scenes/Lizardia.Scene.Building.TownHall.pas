@@ -28,7 +28,7 @@ uses
 
 procedure TSceneTownHall.Render;
 begin
-  Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight);
+  Game.Map.Draw(Self.ScreenWidth, Self.ScreenHeight - 1);
 
   DrawFrame(20, 10, 50, 10);
   DrawTitle(12, 'TOWN HALL');

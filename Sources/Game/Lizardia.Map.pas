@@ -220,7 +220,6 @@ end;
 procedure TMap.Draw(const AWidth, AHeight: Integer);
 var
   X, Y: Integer;
-  F: Boolean;
 begin
   terminal_layer(0);
   for Y := 0 to AHeight - 1 do

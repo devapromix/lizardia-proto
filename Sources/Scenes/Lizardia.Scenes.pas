@@ -37,6 +37,8 @@ type
     procedure DrawText(const Y: Integer; Text: string); overload;
     procedure DrawMoney(const X, Y, Money: Integer;
       const Align: Integer = TK_ALIGN_RIGHT; F: Boolean = False);
+    procedure DrawBarButton(const X, Y: Integer; IsActive: Boolean;
+      Button, Text: string);
     procedure DrawButton(const X, Y: Integer; IsActive: Boolean;
       Button, Text: string); overload;
     procedure DrawButton(const Y: Integer; IsActive: Boolean;
@@ -203,37 +205,48 @@ end;
 procedure TScene.DrawBar;
 var
   LEnableButton: Boolean;
+  LY: Integer;
 begin
+  LY := Self.ScreenHeight - 1;
   terminal_color('white');
   terminal_bkcolor('darkest gray');
-  terminal_clear_area(0, 0, 90, 1);
+  terminal_clear_area(0, LY, 90, 1);
 
-  DrawText(56, 0, Format('Turn:%d', [Game.Turn]));
-  DrawText(70, 0, Format('Pop:%d/%d', [Game.Map.LizardmanList.List.Count,
+  DrawText(56, LY, Format('Turn:%d', [Game.Turn]));
+  DrawText(70, LY, Format('Pop:%d/%d', [Game.Map.LizardmanList.List.Count,
     Game.Map.Building[2].Level * 3]));
 
   LEnableButton := (Scenes.FSceneEnum = scWorld);
 
-  DrawButton(0, 0, LEnableButton, 'H', 'HOUSE');
-  DrawButton(10, 0, LEnableButton, 'S', 'STORAGE');
-  DrawButton(25, 0, LEnableButton, 'B', 'BUILD');
-  DrawButton(35, 0, LEnableButton, 'C', 'CRAFT');
-  DrawButton(80, 0, LEnableButton, 'ESC', 'MENU');
+  DrawBarButton(0, LY, LEnableButton, 'H', 'OUSE');
+  DrawBarButton(8, LY, LEnableButton, 'S', 'TORAGE');
+  DrawBarButton(18, LY, LEnableButton, 'B', 'UILD');
+  DrawBarButton(26, LY, LEnableButton, 'C', 'RAFT');
+  DrawButton(80, LY, LEnableButton, 'ESC', 'MENU');
 
-  if (Scenes.FSceneEnum <> scWorld) and (Scenes.FSceneEnum <> scGameMenu) then
+  if Game.IsPause then
+    DrawBarButton(34, LY, LEnableButton, 'P', 'AUSED')
+  else
+    DrawBarButton(34, LY, LEnableButton, 'P', 'AUSE');
+end;
+
+procedure TScene.DrawBarButton(const X, Y: Integer; IsActive: Boolean;
+  Button, Text: string);
+var
+  CB, CT: string;
+begin
+  if IsActive then
   begin
-    if Game.IsPause then
-      DrawButton(45, 0, False, 'P', 'Paused')
-    else
-      DrawButton(45, 0, False, 'P', 'Pause');
+    CB := 'light yellow';
+    CT := 'white';
   end
   else
   begin
-    if Game.IsPause then
-      DrawText(45, 0, '[c=yellow][[P]][/c] [c=red]PAUSED[/c]')
-    else
-      DrawButton(45, 0, 'P', 'Pause');
+    CB := 'gray';
+    CT := 'gray';
   end;
+  terminal_print(X, Y, Format('[c=' + CB + '][[%s]][/c][c=' + CT + ']%s[/c]',
+    [UpperCase(Button), UpperCase(Text)]));
 end;
 
 procedure TScene.DrawButton(const Y: Integer; Button, Text: string);
@@ -269,7 +282,6 @@ begin
     CB := 'gray';
     CT := 'gray';
   end;
-
   terminal_print(X, Y, Format('[c=' + CB + '][[%s]][/c] [c=' + CT + ']%s[/c]',
     [UpperCase(Button), UpperCase(Text)]));
 end;
@@ -439,10 +451,8 @@ begin
       terminal_color('white');
       if Game.IsDebug then
       begin
-        terminal_print(0, 1, Format('X:%d, Y:%d', [RX, RY]));
+        terminal_print(0, 1, Format('RX:%d, RY:%d', [RX, RY]));
         terminal_print(0, 2, Format('MX:%d, MY:%d', [MX, MY]));
-        terminal_print(0, 3, Format('CW:%d, CH:%d',
-          [terminal_state(TK_CELL_WIDTH), terminal_state(TK_CELL_HEIGHT)]));
       end;
     end;
   terminal_bkcolor(0);

@@ -69,27 +69,30 @@ procedure TSceneWorld.Render;
 var
   LCurrentBuilding: Integer;
 begin
-  DrawMap(ScreenWidth, ScreenHeight);
+  DrawMap(ScreenWidth, ScreenHeight - 1);
 
   DrawBar;
 
-  LCurrentBuilding := Game.Map.GetCurrentBuilding(RX, RY);
-  if LCurrentBuilding >= 0 then
-    DrawTileBkColor('light yellow')
-  else
-    DrawTileBkColor;
+  if MY < ScreenHeight - 1 then
+  begin
+    LCurrentBuilding := Game.Map.GetCurrentBuilding(RX, RY);
+    if LCurrentBuilding >= 0 then
+      DrawTileBkColor('light yellow')
+    else
+      DrawTileBkColor;
 
-  terminal_color('black');
-  terminal_put(MX, MY, Tile[Game.Map.GetTile].Tile);
+    terminal_color('black');
+    terminal_put(MX, MY, Tile[Game.Map.GetTile].Tile);
+  end;
 
-  { if (MY >= ScreenHeight - 1) then
+  if (MY = ScreenHeight - 2) then
     ScrollDown;
-    if (MY <= 0) then
+  if (MY = 0) then
     ScrollUp;
-    if (MX >= ScreenWidth - 1) then
+  if (MX = ScreenWidth - 1) then
     ScrollRight;
-    if (MX <= 0) then
-    ScrollLeft; }
+  if (MX = 0) then
+    ScrollLeft;
 end;
 
 procedure TSceneWorld.Update(var Key: Word);
